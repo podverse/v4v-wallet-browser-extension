@@ -17,6 +17,7 @@ import {
   Withdraw
 } from '../../containers'
 import { LoadingSpinner } from '../../components';
+import { handleV4VHiddenElement } from '../../lib/v4vHiddenElement';
 
 const _aboutKey = 'About'
 const _boostKey = 'Boost'
@@ -31,6 +32,19 @@ const _settingsKey = 'Settings'
 const _transactionHistoryKey = 'TransactionHistory'
 const _withdrawKey = 'Withdraw'
 
+chrome.tabs.query({ active: true }, function (tabs) {
+  let tab = tabs[0];
+
+  if (tab?.id) {
+    chrome.scripting.executeScript(
+      {
+        target: { tabId: tab.id },
+        func: handleV4VHiddenElement
+      }
+    );
+  }
+});
+
 const Popup = () => {
   const [currentPage, setCurrentPage] = useState(_initialScreenKey)
   const [v4vData, setV4VData] = useState<V4VData | null>(null)
@@ -40,7 +54,6 @@ const Popup = () => {
     const interval = setInterval(async () => {
       const storageData = await chrome.storage.local.get(['v4vData'])
       const latestV4VData = storageData.v4vData
-      console.log('storageData', storageData)
       setV4VData(latestV4VData || null)
       setHasInitialized(true)
     }, 1000)
