@@ -16,6 +16,7 @@ import {
   TransactionHistory,
   Withdraw
 } from '../../containers'
+import { LoadingSpinner } from '../../components';
 
 const _aboutKey = 'About'
 const _boostKey = 'Boost'
@@ -31,87 +32,95 @@ const _transactionHistoryKey = 'TransactionHistory'
 const _withdrawKey = 'Withdraw'
 
 const Popup = () => {
-  const [currentPage, setCurrentPage] = useState('InitialScreen')
-  const [v4vData, setV4VData] = useState<V4VData>({
-    episodeTitle: 'Untitled Episode',
-    isPlaying: false,
-    playbackPosition: 0,
-    podcastIndexId: null,
-    podcastTitle: 'Untitled Podcast',
-    valueTag: []
-  })
+  const [currentPage, setCurrentPage] = useState(_initialScreenKey)
+  const [v4vData, setV4VData] = useState<V4VData | null>(null)
+  const [hasInitialized, setHasInitialized] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(async () => {
       const storageData = await chrome.storage.local.get(['v4vData'])
-      console.log('asdf', storageData)
       const latestV4VData = storageData.v4vData
+      console.log('storageData', storageData)
       setV4VData(latestV4VData || null)
+      setHasInitialized(true)
     }, 1000)
 
     return () => { interval }
   }, [])
 
   return (
-    <div className="App">
+    <div className="popup-wrapper">
       {
-        currentPage === _aboutKey && (
-          <About />
+        !hasInitialized && (
+          <div className='popup-spinner-wrapper'>
+            <LoadingSpinner />
+          </div>
         )
       }
       {
-        currentPage === _boostKey && (
-          <Boost />
-        )
-      }
-      {
-        currentPage === _boostagramKey && (
-          <Boostagram />
-        )
-      }
-      {
-        currentPage === _createWalletKey && (
-          <CreateWallet />
-        )
-      }
-      {
-        currentPage === _dashboardKey && (
-          <Dashboard />
-        )
-      }
-      {
-        currentPage === _depositKey && (
-          <Deposit />
-        )
-      }
-      {
-        currentPage === _exportWalletKey && (
-          <ExportWallet />
-        )
-      }
-      {
-        currentPage === _importWalletKey && (
-          <ImportWallet />
-        )
-      }
-      {
-        currentPage === _initialScreenKey && (
-          <InitialScreen v4vData={v4vData} />
-        )
-      }
-      {
-        currentPage === _settingsKey && (
-          <Settings />
-        )
-      }
-      {
-        currentPage === _transactionHistoryKey && (
-          <TransactionHistory />
-        )
-      }
-      {
-        currentPage === _withdrawKey && (
-          <Withdraw />
+        hasInitialized && (
+          <>
+            {
+              currentPage === _aboutKey && (
+                <About />
+              )
+            }
+            {
+              currentPage === _boostKey && (
+                <Boost />
+              )
+            }
+            {
+              currentPage === _boostagramKey && (
+                <Boostagram />
+              )
+            }
+            {
+              currentPage === _createWalletKey && (
+                <CreateWallet />
+              )
+            }
+            {
+              currentPage === _dashboardKey && (
+                <Dashboard />
+              )
+            }
+            {
+              currentPage === _depositKey && (
+                <Deposit />
+              )
+            }
+            {
+              currentPage === _exportWalletKey && (
+                <ExportWallet />
+              )
+            }
+            {
+              currentPage === _importWalletKey && (
+                <ImportWallet />
+              )
+            }
+            {
+              currentPage === _initialScreenKey && (
+                <InitialScreen v4vData={v4vData} />
+              )
+            }
+            {
+              currentPage === _settingsKey && (
+                <Settings />
+              )
+            }
+            {
+              currentPage === _transactionHistoryKey && (
+                <TransactionHistory />
+              )
+            }
+            {
+              currentPage === _withdrawKey && (
+                <Withdraw />
+              )
+            }
+          </>
         )
       }
     </div>

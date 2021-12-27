@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 
 import Popup from './Popup';
 import './index.css';
+import '../../components/styles';
+import '../../containers/styles';
 
 render(<Popup />, window.document.querySelector('#app-container'));
 
