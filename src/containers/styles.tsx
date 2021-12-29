@@ -1,6 +1,7 @@
 import './About/About.css'
 import './Boost/Boost.css'
 import './Boostagram/Boostagram.css'
+import './ConsentScreen/ConsentScreen.css'
 import './CreateWallet/CreateWallet.css'
 import './Dashboard/Dashboard.css'
 import './Deposit/Deposit.css'

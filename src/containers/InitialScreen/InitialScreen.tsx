@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import type { V4VData } from "../../types"
 
 type Props = {

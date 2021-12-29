@@ -1,5 +1,7 @@
+import './globals.css'
 import './BackButton/BackButton.css'
 import './Button/Button.css'
+import './Checkbox/Checkbox.css'
 import './HeaderBar/HeaderBar.css'
 import './Link/Link.css'
 import './LoadingSpinner/LoadingSpinner.css'

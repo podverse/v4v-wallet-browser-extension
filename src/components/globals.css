@@ -1,0 +1,17 @@
+.container-wrapper {
+  padding: 0 16px;
+  overflow: auto;
+}
+
+p { 
+  font-size: 16px;
+}
+
+a {
+  color: #74A8DC;
+}
+
+a:hover {
+  color: #49a4ff;
+  cursor: pointer;
+}

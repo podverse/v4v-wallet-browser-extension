@@ -1,6 +1,7 @@
 export { About } from './About/About'
 export { Boost } from './Boost/Boost'
 export { Boostagram } from './Boostagram/Boostagram'
+export { ConsentScreen } from './ConsentScreen/ConsentScreen'
 export { CreateWallet } from './CreateWallet/CreateWallet'
 export { Dashboard } from './Dashboard/Dashboard'
 export { Deposit } from './Deposit/Deposit'

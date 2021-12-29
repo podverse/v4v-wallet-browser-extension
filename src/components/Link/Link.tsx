@@ -1,9 +1,22 @@
-import React from 'react';
+import React from 'react'
 
-export const Link = () => {
+type Props = {
+  target?: '_blank'
+  text: string
+  url?: string
+}
+
+export const Link = ({ target, text, url }: Props) => {
+  const handleTargetBlank = () => {
+    chrome.tabs.create({ url })
+    return false
+  }
+
   return (
-    <div className='component-wrapper'>
-      Link
-    </div>
+    <a
+      className='link'
+      {...(target === '_blank' ? { onClick: handleTargetBlank } : {})}>
+      {text}
+    </a>
   )
 }

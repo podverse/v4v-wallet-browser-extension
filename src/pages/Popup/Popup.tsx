@@ -6,6 +6,7 @@ import {
   About,
   Boost,
   Boostagram,
+  ConsentScreen,
   CreateWallet,
   Dashboard,
   Deposit,
@@ -22,6 +23,7 @@ import { handleV4VHiddenElement } from '../../lib/v4vHiddenElement';
 const _aboutKey = 'About'
 const _boostKey = 'Boost'
 const _boostagramKey = 'Boostagram'
+const _consentScreenKey = 'ConsentScreen'
 const _createWalletKey = 'CreateWallet'
 const _dashboardKey = 'Dashboard'
 const _depositKey = 'Deposit'
@@ -46,7 +48,7 @@ chrome.tabs.query({ active: true }, function (tabs) {
 });
 
 const Popup = () => {
-  const [currentPage, setCurrentPage] = useState(_initialScreenKey)
+  const [currentPage, setCurrentPage] = useState(_consentScreenKey)
   const [v4vData, setV4VData] = useState<V4VData | null>(null)
   const [hasInitialized, setHasInitialized] = useState(false)
 
@@ -58,7 +60,9 @@ const Popup = () => {
       setHasInitialized(true)
     }, 1000)
 
-    return () => { interval }
+    return () => {
+      clearInterval(interval)
+    }
   }, [])
 
   return (
@@ -86,6 +90,11 @@ const Popup = () => {
             {
               currentPage === _boostagramKey && (
                 <Boostagram />
+              )
+            }
+            {
+              currentPage === _consentScreenKey && (
+                <ConsentScreen />
               )
             }
             {
