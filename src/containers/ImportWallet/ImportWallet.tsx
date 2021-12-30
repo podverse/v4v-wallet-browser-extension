@@ -1,6 +1,10 @@
 import React from 'react'
 
-export const ImportWallet = () => {
+type Props = {
+  setCurrentPage: any
+}
+
+export const ImportWallet = ({ setCurrentPage }: Props) => {
   return (
     <div className='container-wrapper'>
       ImportWallet

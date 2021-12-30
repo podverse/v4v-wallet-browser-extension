@@ -1,6 +1,10 @@
 import React from 'react'
 
-export const Dashboard = () => {
+type Props = {
+  setCurrentPage: any
+}
+
+export const Dashboard = ({ setCurrentPage }: Props) => {
   return (
     <div className='container-wrapper'>
       Dashboard

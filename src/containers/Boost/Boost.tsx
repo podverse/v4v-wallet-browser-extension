@@ -1,6 +1,10 @@
 import React from 'react'
 
-export const Boost = () => {
+type Props = {
+  setCurrentPage: any
+}
+
+export const Boost = ({ setCurrentPage }: Props) => {
   return (
     <div className='container-wrapper'>
       Boost

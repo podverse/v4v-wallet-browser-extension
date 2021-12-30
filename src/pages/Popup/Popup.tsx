@@ -1,38 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import './Popup.css';
-import type { V4VData } from '../../types'
+import type { V4VData } from '../../resources/types'
 
 import {
   About,
   Boost,
-  Boostagram,
-  ConsentScreen,
+  Consent,
   CreateWallet,
   Dashboard,
   Deposit,
   ExportWallet,
   ImportWallet,
-  InitialScreen,
+  NoWallet,
   Settings,
   TransactionHistory,
   Withdraw
 } from '../../containers'
 import { LoadingSpinner } from '../../components';
 import { handleV4VHiddenElement } from '../../lib/v4vHiddenElement';
-
-const _aboutKey = 'About'
-const _boostKey = 'Boost'
-const _boostagramKey = 'Boostagram'
-const _consentScreenKey = 'ConsentScreen'
-const _createWalletKey = 'CreateWallet'
-const _dashboardKey = 'Dashboard'
-const _depositKey = 'Deposit'
-const _exportWalletKey = 'ExportWallet'
-const _importWalletKey = 'ImportWallet'
-const _initialScreenKey = 'InitialScreen'
-const _settingsKey = 'Settings'
-const _transactionHistoryKey = 'TransactionHistory'
-const _withdrawKey = 'Withdraw'
+import { Constants } from '../../resources/Constants'
 
 chrome.tabs.query({ active: true }, function (tabs) {
   let tab = tabs[0];
@@ -48,21 +34,30 @@ chrome.tabs.query({ active: true }, function (tabs) {
 });
 
 const Popup = () => {
-  const [currentPage, setCurrentPage] = useState(_consentScreenKey)
+  const [currentPage, setCurrentPage] = useState(Constants.RouteNames.keys._consent)
   const [v4vData, setV4VData] = useState<V4VData | null>(null)
   const [hasInitialized, setHasInitialized] = useState(false)
 
   useEffect(() => {
-    const interval = setInterval(async () => {
-      const storageData = await chrome.storage.local.get(['v4vData'])
-      const latestV4VData = storageData.v4vData
-      setV4VData(latestV4VData || null)
-      setHasInitialized(true)
-    }, 1000)
+    ; (async () => {
+      const storageData = await chrome.storage.local.get([
+        'acceptedTermsOfService',
+        'v4vData',
+        'walletInfo'
+      ])
+      const { acceptedTermsOfService, v4vData, walletInfo } = storageData
 
-    return () => {
-      clearInterval(interval)
-    }
+      if (!acceptedTermsOfService) {
+        setCurrentPage(Constants.RouteNames.keys._consent)
+      } else if (!walletInfo) {
+        setCurrentPage(Constants.RouteNames.keys._noWallet)
+      } else {
+        setCurrentPage(Constants.RouteNames.keys._boost)
+      }
+
+      setV4VData(v4vData || null)
+      setHasInitialized(true)
+    })()
   }, [])
 
   return (
@@ -78,68 +73,63 @@ const Popup = () => {
         hasInitialized && (
           <>
             {
-              currentPage === _aboutKey && (
-                <About />
+              currentPage === Constants.RouteNames.keys._about && (
+                <About setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _boostKey && (
-                <Boost />
+              currentPage === Constants.RouteNames.keys._boost && (
+                <Boost setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _boostagramKey && (
-                <Boostagram />
+              currentPage === Constants.RouteNames.keys._consent && (
+                <Consent setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _consentScreenKey && (
-                <ConsentScreen />
+              currentPage === Constants.RouteNames.keys._createWallet && (
+                <CreateWallet setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _createWalletKey && (
-                <CreateWallet />
+              currentPage === Constants.RouteNames.keys._dashboard && (
+                <Dashboard setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _dashboardKey && (
-                <Dashboard />
+              currentPage === Constants.RouteNames.keys._deposit && (
+                <Deposit setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _depositKey && (
-                <Deposit />
+              currentPage === Constants.RouteNames.keys._exportWallet && (
+                <ExportWallet setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _exportWalletKey && (
-                <ExportWallet />
+              currentPage === Constants.RouteNames.keys._importWallet && (
+                <ImportWallet setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _importWalletKey && (
-                <ImportWallet />
+              currentPage === Constants.RouteNames.keys._noWallet && (
+                <NoWallet setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _initialScreenKey && (
-                <InitialScreen v4vData={v4vData} />
+              currentPage === Constants.RouteNames.keys._settings && (
+                <Settings setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _settingsKey && (
-                <Settings />
+              currentPage === Constants.RouteNames.keys._transactionHistory && (
+                <TransactionHistory setCurrentPage={setCurrentPage} />
               )
             }
             {
-              currentPage === _transactionHistoryKey && (
-                <TransactionHistory />
-              )
-            }
-            {
-              currentPage === _withdrawKey && (
-                <Withdraw />
+              currentPage === Constants.RouteNames.keys._withdraw && (
+                <Withdraw setCurrentPage={setCurrentPage} />
               )
             }
           </>

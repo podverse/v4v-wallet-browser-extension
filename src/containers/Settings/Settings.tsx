@@ -1,6 +1,10 @@
 import React from 'react'
 
-export const Settings = () => {
+type Props = {
+  setCurrentPage: any
+}
+
+export const Settings = ({ setCurrentPage }: Props) => {
   return (
     <div className='container-wrapper'>
       Settings

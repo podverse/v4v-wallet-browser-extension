@@ -1,15 +1,26 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, Link } from '../../components'
+import { Constants } from '../../resources/Constants'
 
-export const ConsentScreen = () => {
+type Props = {
+  setCurrentPage: any
+}
+
+export const Consent = ({ setCurrentPage }: Props) => {
   const [hasAccepted, setHasAccepted] = useState<boolean>(false)
 
-  const handleCancel = () => {
+  const handleAccept = async () => {
+    await chrome.storage.local.set({ acceptedTermsOfService: true })
+    setCurrentPage(Constants.RouteNames.keys._noWallet)
+  }
+
+  const handleCancel = async () => {
+    await chrome.storage.local.set({ acceptedTermsOfService: false })
     window.close()
   }
 
   return (
-    <div className='consent-screen container-wrapper'>
+    <div className='consent container-wrapper'>
       <h1>Terms of Service</h1>
       <p>The V4V Wallet lets you make network requests to send Bitcoin transactions over the Bitcoin Lightning Network.</p>
       <p>All V4V Wallet software is provided AS IS, with no warranty. Your transactions cannot be reversed or recovered.</p>
@@ -22,7 +33,7 @@ export const ConsentScreen = () => {
         label='I understand and accept the terms.'
         onChange={(val: boolean) => setHasAccepted(val)}
       />
-      <Button disabled={!hasAccepted} isPrimary text='Accept' />
+      <Button disabled={!hasAccepted} isPrimary onClick={handleAccept} text='Accept' />
       <Button isSecondary onClick={handleCancel} text='Cancel' />
     </div>
   )

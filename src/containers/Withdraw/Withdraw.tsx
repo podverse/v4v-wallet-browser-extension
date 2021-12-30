@@ -1,6 +1,10 @@
 import React from 'react'
 
-export const Withdraw = () => {
+type Props = {
+  setCurrentPage: any
+}
+
+export const Withdraw = ({ setCurrentPage }: Props) => {
   return (
     <div className='container-wrapper'>
       Withdraw
