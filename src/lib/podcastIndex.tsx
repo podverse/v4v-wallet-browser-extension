@@ -75,7 +75,7 @@ const convertPodcastIndexValueToV4VItemValueTags = (podcastIndexValue: PodcastIn
   const valueTag = {
     method: podcastIndexValue.model.method,
     recipients: convertPodcastIndexValueDestintationsToV4VItemRecipients(podcastIndexValue.destinations),
-    suggested: podcastIndexValue.model.suggested,
+    suggested: parseInt(podcastIndexValue.model.suggested as any, 10),
     type: podcastIndexValue.model.type,
   } as ValueTag
 
@@ -105,16 +105,16 @@ type PodcastIndexValueDestination = {
   fee?: boolean
   name: string
   split: number
-  type: 'node'
+  type: string // 'node'
 }
 
 type PodcastIndexValue = {
-  model: {
-    method: 'keysend'
-    suggested: number
-    type: 'lightning'
-  }
   destinations: PodcastIndexValueDestination[]
+  model: {
+    method: string // 'keysend'
+    suggested: number
+    type: string // 'lightning'
+  }
 }
 
 const sampleV4VItem = {
@@ -160,7 +160,7 @@ const sampleV4VItem = {
           "type": "node"
         }
       ],
-      "suggested": "0.00000005000",
+      "suggested": 0.00000005000,
       "type": "lightning"
     }
   ]

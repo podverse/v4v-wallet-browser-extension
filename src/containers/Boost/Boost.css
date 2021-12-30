@@ -1,0 +1,13 @@
+.boost .podcast-info {
+  margin-bottom: 32px;
+}
+
+.boost .podcast-info .podcast-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.boost .podcast-info .episode-title {
+  font-size: 16px;
+}

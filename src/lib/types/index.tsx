@@ -22,14 +22,14 @@ export type ValueRecipient = {
   fee?: boolean
   name: string
   split: number
-  type: 'node'
+  type: string // 'node'
 }
 
 export type ValueTag = {
-  method: 'keysend'
+  method: string // 'keysend'
   recipients: ValueRecipient[]
   suggested: number
-  type: 'lightning'
+  type: string // 'lightning'
 }
 
 export type ValueTags = ValueTag[]

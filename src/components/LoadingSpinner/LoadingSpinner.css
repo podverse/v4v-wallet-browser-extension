@@ -1,3 +1,10 @@
+.fill-space {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
 .lds-spinner {
   color: official;
   display: inline-block;
@@ -18,7 +25,7 @@
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: #000000;
+  background: #ffffff;
 }
 .lds-spinner div:nth-child(1) {
   transform: rotate(0deg);

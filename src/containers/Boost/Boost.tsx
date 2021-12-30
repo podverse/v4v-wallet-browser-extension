@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react'
-import { HeaderBar } from '../../components'
+import React, { useEffect, useRef, useState } from 'react'
+import { Button, HeaderBar, LoadingSpinner, TextArea } from '../../components'
 import { getPodcastIndexItemInfo } from '../../lib/podcastIndex'
+import type { V4VItem } from '../../lib/types'
 
 type Props = {
   setCurrentPage: any
 }
 
 export const Boost = ({ setCurrentPage }: Props) => {
+  const [isQuerying, setIsQuerying] = useState<boolean>(true)
+  const [v4vItem, setV4VItem] = useState<V4VItem | null>(null)
+  const textAreaRef = useRef()
+
   useEffect(() => {
     ; (async () => {
       const storageData = await chrome.storage.local.get([
@@ -14,15 +19,39 @@ export const Boost = ({ setCurrentPage }: Props) => {
       ])
       const { v4vHiddenElement } = storageData
       const v4vItemInfo = await getPodcastIndexItemInfo(v4vHiddenElement.podcastIndexId, v4vHiddenElement.enclosureUrl)
-      console.log('Boost v4vItemInfo', v4vItemInfo)
+
+      // TEMP: setTimeout for dev purposes
+      setTimeout(() => {
+        setV4VItem(v4vItemInfo)
+        setIsQuerying(false)
+      }, 1000)
     })()
   }, [])
 
   return (
     <div className='outer-wrapper'>
       <HeaderBar showMoreButton />
-      <div className='container-wrapper'>
-        Boost
+      <div className='boost container-wrapper'>
+        {
+          isQuerying && (
+            <LoadingSpinner fillSpace />
+          )
+        }
+        {
+          !isQuerying && (
+            <>
+              <div className='podcast-info'>
+                <div className='podcast-title'>{v4vItem?.podcastTitle}</div>
+                <div className='episode-title'>{v4vItem?.episodeTitle}</div>
+              </div>
+              <div className='boost-wrapper'>
+                <Button className='boost-button' isSecondary text='Boost' />
+                <TextArea defaultValue='' placeholder='send a boostagram' ref={textAreaRef} />
+              </div>
+              {/* <Button className='stream-button' isSecondary text='Stream' /> */}
+            </>
+          )
+        }
       </div>
     </div>
   )
