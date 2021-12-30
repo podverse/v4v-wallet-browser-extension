@@ -1,5 +1,6 @@
 
 export type V4VData = {
+  episodeMediaUrl: string
   episodeTitle: string
   isPlaying: boolean
   playbackPosition: number
