@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Popup.css';
-import type { V4VData } from '../../resources/types'
+import type { V4VHiddenElement } from '../../lib/types'
 
 import {
   About,
@@ -35,17 +35,17 @@ chrome.tabs.query({ active: true }, function (tabs) {
 
 const Popup = () => {
   const [currentPage, setCurrentPage] = useState(Constants.RouteNames.keys._consent)
-  const [v4vData, setV4VData] = useState<V4VData | null>(null)
+  const [v4vHiddenElement, setV4VHiddenElement] = useState<V4VHiddenElement | null>(null)
   const [hasInitialized, setHasInitialized] = useState(false)
 
   useEffect(() => {
     ; (async () => {
       const storageData = await chrome.storage.local.get([
         'acceptedTermsOfService',
-        'v4vData',
+        'v4vHiddenElement',
         'walletInfo'
       ])
-      const { acceptedTermsOfService, v4vData, walletInfo } = storageData
+      const { acceptedTermsOfService, v4vHiddenElement, walletInfo } = storageData
 
       if (!acceptedTermsOfService) {
         setCurrentPage(Constants.RouteNames.keys._consent)
@@ -55,7 +55,6 @@ const Popup = () => {
         setCurrentPage(Constants.RouteNames.keys._boost)
       }
 
-      setV4VData(v4vData || null)
       setHasInitialized(true)
     })()
   }, [])

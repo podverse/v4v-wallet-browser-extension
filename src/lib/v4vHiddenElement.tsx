@@ -2,10 +2,8 @@ export const handleV4VHiddenElement = () => {
   const v4vHiddenElementClass = '.v4v-hidden-element'
   const v4vCurrentPlaybackPositionClass = 'data-v4v-current-playback-position'
   const v4vPodcastIndexIdClass = 'data-v4v-podcast-index-id'
-  const v4vValueClass = 'data-v4v-value'
+  const v4vEpisodeEnclosureUrlClass = 'data-v4v-episode-enclosure-url'
   const v4vIsPlayingClass = 'data-v4v-is-playing'
-  const v4vPodcastTitleClass = 'data-v4v-podcast-title'
-  const v4vEpisodeTitleClass = 'data-v4v-episode-title'
 
   const handleV4VHiddenElementChanges = (el: any) => {
     var observer = new MutationObserver(function (mutations) {
@@ -27,24 +25,18 @@ export const handleV4VHiddenElement = () => {
   try {
     const el = document.querySelector(v4vHiddenElementClass)
     if (el) {
-      const playbackPositionAttr = el.getAttribute(v4vCurrentPlaybackPositionClass)
-      const podcastIndexIdAttr = el.getAttribute(v4vPodcastIndexIdClass)
-      const valueTagAttr = el.getAttribute(v4vValueClass)
-
+      const enclosureUrl = el.getAttribute(v4vEpisodeEnclosureUrlClass)
       const isPlaying = el.getAttribute(v4vIsPlayingClass) === 'true'
+      const playbackPositionAttr = el.getAttribute(v4vCurrentPlaybackPositionClass)
       const playbackPosition = playbackPositionAttr ? parseInt(playbackPositionAttr, 10) : 0
+      const podcastIndexIdAttr = el.getAttribute(v4vPodcastIndexIdClass)
       const podcastIndexId = podcastIndexIdAttr ? parseInt(podcastIndexIdAttr, 10) : null
-      const podcastTitle = el.getAttribute(v4vPodcastTitleClass) || 'Podcast title not found'
-      const episodeTitle = el.getAttribute(v4vEpisodeTitleClass) || 'Episode title not found'
-      const valueTag = valueTagAttr ? JSON.parse(valueTagAttr) : null
 
       parsedItem = {
-        episodeTitle,
+        enclosureUrl,
         isPlaying,
         playbackPosition,
-        podcastIndexId,
-        podcastTitle,
-        valueTag
+        podcastIndexId
       }
     }
 
@@ -54,5 +46,5 @@ export const handleV4VHiddenElement = () => {
     console.log(error)
   }
 
-  chrome.storage.local.set({ v4vData: parsedItem })
+  chrome.storage.local.set({ v4vHiddenElement: parsedItem })
 }

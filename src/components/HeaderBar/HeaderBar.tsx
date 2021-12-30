@@ -1,9 +1,18 @@
 import React from 'react'
 
-export const HeaderBar = () => {
+type Props = {
+  showMoreButton?: boolean
+}
+
+export const HeaderBar = ({ showMoreButton }: Props) => {
   return (
-    <div className='component-wrapper'>
-      HeaderBar
+    <div className='header-bar'>
+      <div className='balance'>Balance: 54,321 sats</div>
+      {
+        showMoreButton && (
+          <div className='more-button'>More</div>
+        )
+      }
     </div>
   )
 }
