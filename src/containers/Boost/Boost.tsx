@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Button, HeaderBar, LoadingSpinner, TextArea } from '../../components'
+import { Button, HeaderBar, LoadingSpinner, RecipientTable, TextArea } from '../../components'
 import { getPodcastIndexItemInfo } from '../../lib/podcastIndex'
 import type { V4VItem } from '../../lib/types'
 
@@ -8,9 +8,10 @@ type Props = {
 }
 
 export const Boost = ({ setCurrentPage }: Props) => {
+  const [isBoosting, setIsBoosting] = useState<boolean>(false)
   const [isQuerying, setIsQuerying] = useState<boolean>(true)
   const [v4vItem, setV4VItem] = useState<V4VItem | null>(null)
-  const textAreaRef = useRef()
+  const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
     ; (async () => {
@@ -28,13 +29,24 @@ export const Boost = ({ setCurrentPage }: Props) => {
     })()
   }, [])
 
+  const handleBoost = () => {
+    setIsBoosting(true)
+
+    setTimeout(() => {
+      if (textAreaRef?.current?.value) {
+        textAreaRef.current.value = ''
+      }
+      setIsBoosting(false)
+    }, 1000)
+  }
+
   return (
     <div className='outer-wrapper'>
       <HeaderBar showMoreButton />
       <div className='boost container-wrapper'>
         {
           isQuerying && (
-            <LoadingSpinner fillSpace />
+            <LoadingSpinner fillSpace size='small' />
           )
         }
         {
@@ -45,10 +57,11 @@ export const Boost = ({ setCurrentPage }: Props) => {
                 <div className='episode-title'>{v4vItem?.episodeTitle}</div>
               </div>
               <div className='boost-wrapper'>
-                <Button className='boost-button' isSecondary text='Boost' />
+                <Button className='boost-button' isLoading={isBoosting} isSecondary text='Boost' onClick={handleBoost} textBottom='500 sats' />
                 <TextArea defaultValue='' placeholder='send a boostagram' ref={textAreaRef} />
               </div>
               {/* <Button className='stream-button' isSecondary text='Stream' /> */}
+              <RecipientTable valueTag={v4vItem?.valueTags[0]} />
             </>
           )
         }

@@ -1,11 +1,26 @@
 .button {
   border-radius: 100px;
   cursor: pointer;
+  height: 50px;
+  margin-bottom: 16px;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.button .text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button .text-wrapper .top-text {
   font-size: 16px;
   font-weight: 700;
-  margin-bottom: 16px;
-  padding: 16px;
-  width: 100%;
+}
+
+.button .text-wrapper .bottom-text {
+  font-size: 13px;
+  margin-top: 2px;
 }
 
 .button:disabled {
@@ -29,7 +44,7 @@
   color: #000000;
 }
 
-.button.is-primary:hover, .button.is-primary:active, .button.is-primary:focus {
+.button.is-primary:hover, .button.is-primary:focus {
   background-color: #49a4ff;
   border: 1px solid #49a4ff;
 }

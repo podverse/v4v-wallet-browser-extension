@@ -1,17 +1,20 @@
 import React from 'react'
+import { LoadingSpinner } from '..'
 
 type Props = {
   className?: string
   disabled?: boolean
   isLink?: boolean
+  isLoading?: boolean
   isPrimary?: boolean
   isSecondary?: boolean
   isDanger?: boolean
   onClick?: any
   text?: string
+  textBottom?: string
 }
 
-export const Button = ({ className, disabled, isDanger, isLink, isPrimary, isSecondary, onClick, text }: Props) => {
+export const Button = ({ className, disabled, isDanger, isLink, isLoading = false, isPrimary, isSecondary, onClick, text, textBottom }: Props) => {
   const finalClassName = `
     button
     ${className ? className : ''}
@@ -23,7 +26,27 @@ export const Button = ({ className, disabled, isDanger, isLink, isPrimary, isSec
 
   return (
     <button className={finalClassName} disabled={disabled} onClick={onClick}>
-      {text}
+      {
+        isLoading && (
+          <LoadingSpinner size='small' />
+        )
+      }
+      {
+        !isLoading && (
+          <div className='text-wrapper'>
+            <div className='top-text'>
+              {text}
+            </div>
+            {
+              textBottom && (
+                <div className='bottom-text'>
+                  {textBottom}
+                </div>
+              )
+            }
+          </div>
+        )
+      }
     </button>
   )
 }

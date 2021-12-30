@@ -12,7 +12,7 @@ export type V4VItem = {
   podcastIndexEpisodeId: number | null
   podcastIndexFeedId: number | null
   podcastTitle: string
-  valueTags: ValueTags
+  valueTags: ValueTag[]
 }
 
 export type ValueRecipient = {
@@ -31,5 +31,3 @@ export type ValueTag = {
   suggested: number
   type: string // 'lightning'
 }
-
-export type ValueTags = ValueTag[]

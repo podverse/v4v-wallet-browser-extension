@@ -63,7 +63,7 @@ const Popup = () => {
     <div className="popup-wrapper">
       {
         !hasInitialized && (
-          <LoadingSpinner fillSpace />
+          <LoadingSpinner fillSpace size='large' />
         )
       }
       {

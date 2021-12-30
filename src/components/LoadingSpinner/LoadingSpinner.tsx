@@ -4,14 +4,16 @@ import React from 'react'
 
 type Props = {
   fillSpace?: boolean
+  size: 'small' | 'large'
 }
 
-export const LoadingSpinner = ({ fillSpace }: Props) => {
+export const LoadingSpinner = ({ fillSpace, size = 'large' }: Props) => {
   const wrapperClass = `${fillSpace ? 'fill-space' : ''}`
+  const loaderClass = `loader ${size}`
 
   return (
     <div className={wrapperClass}>
-      <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      <div aria-label='Loading' className={loaderClass} />
     </div>
   )
 }
