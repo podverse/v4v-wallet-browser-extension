@@ -1,9 +1,14 @@
 import React from 'react'
+import { Link } from '..'
 
-export const BackButton = () => {
+type Props = {
+  handleSetCurrentPage: any
+}
+
+export const BackButton = ({ handleSetCurrentPage }: Props) => {
   return (
-    <div className='component-wrapper'>
-      BackButton
+    <div className='back-button-wrapper'>
+      <Link className='back-button' handleSetCurrentPage={handleSetCurrentPage} text={'< Back'} />
     </div>
   )
 }

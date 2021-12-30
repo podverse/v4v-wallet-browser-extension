@@ -2,12 +2,17 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 0 16px;
+  padding: 16px;
   overflow: auto;
+}
+
+h1 {
+  margin: 0 0 16px 0;
 }
 
 p { 
   font-size: 16px;
+  margin: 0 0 16px 0;
 }
 
 a {
@@ -17,4 +22,29 @@ a {
 a:hover {
   color: #49a4ff;
   cursor: pointer;
+}
+
+/* Reset <button> styles */
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
 }

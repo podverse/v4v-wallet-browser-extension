@@ -1,5 +1,6 @@
 .popup-wrapper {
-  background-color: #ffffff;
+  background-color: #000000;
+  color: #ffffff;
   display: flex;
   flex: 1;
 }

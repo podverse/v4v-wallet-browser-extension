@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '../../components'
+import { BackButton, Button } from '../../components'
 import { Constants } from '../../resources'
 
 type Props = {
@@ -7,13 +7,21 @@ type Props = {
 }
 
 export const ImportWallet = ({ setCurrentPage }: Props) => {
-  const handleImportWallet = () => {
+  const handleBackButton = () => {
+    setCurrentPage(Constants.RouteNames.keys._noWallet)
+  }
+
+  const handleImportWallet = async () => {
+    await chrome.storage.local.set({ 'walletInfo': {} })
     setCurrentPage(Constants.RouteNames.keys._boost)
   }
 
   return (
-    <div className='import-wallet-container container-wrapper'>
-      <Button className='import-wallet' onClick={handleImportWallet} text='Import Wallet' />
+    <div className='container-wrapper'>
+      <BackButton handleSetCurrentPage={handleBackButton} />
+      <div className='import-wallet-container'>
+        <Button className='import-wallet' isSecondary onClick={handleImportWallet} text='Import Wallet' />
+      </div>
     </div>
   )
 }

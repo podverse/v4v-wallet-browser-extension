@@ -1,6 +1,7 @@
 import React from 'react'
 
 type Props = {
+  className?: string
   handleSetCurrentPage?: any
   isBold?: boolean
   target?: '_blank'
@@ -8,7 +9,7 @@ type Props = {
   url?: string
 }
 
-export const Link = ({ handleSetCurrentPage, isBold, target, text, url }: Props) => {
+export const Link = ({ className, handleSetCurrentPage, isBold, target, text, url }: Props) => {
   const handleTargetBlank = () => {
     chrome.tabs.create({ url })
     return false
@@ -16,6 +17,7 @@ export const Link = ({ handleSetCurrentPage, isBold, target, text, url }: Props)
 
   const finalClassName = `
     link
+    ${className ? className : ''}
     ${isBold ? 'is-bold' : ''}
   `
 

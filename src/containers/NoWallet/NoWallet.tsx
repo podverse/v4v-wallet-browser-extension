@@ -19,8 +19,8 @@ export const NoWallet = ({ setCurrentPage }: Props) => {
     <div className='no-wallet-container container-wrapper'>
       <h1>V4V Wallet</h1>
       <div className='button-wrapper'>
-        <Button className='create-wallet' onClick={handleCreateWallet} text='Create Wallet' />
-        <Button className='import-wallet' onClick={handleImportWallet} text='Import Wallet' />
+        <Button className='create-wallet' isSecondary onClick={handleCreateWallet} text='Create Wallet' />
+        <Button className='import-wallet' isSecondary onClick={handleImportWallet} text='Import Wallet' />
       </div>
       <div className='footer'>
         <Link handleSetCurrentPage={() => setCurrentPage(Constants.RouteNames.keys._about)} isBold text='About' />

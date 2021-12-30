@@ -1,5 +1,5 @@
 .no-wallet-container h1 {
-  margin: 64px 0 0 0;
+  margin: 48px 0 0 0;
   text-align: center;
 }
 
@@ -20,5 +20,5 @@
 }
 
 .no-wallet-container .footer {
-  margin: 16px auto 48px auto;
+  margin: 16px auto 32px auto;
 }
