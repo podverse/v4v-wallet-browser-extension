@@ -24,11 +24,17 @@
   margin-bottom: 8px;
 }
 
-.recipient-table .recipient .name {
-  font-weight: 700;
-}
-
 .recipient-table .recipient .recipient-table-row {
   display: flex;
   justify-content: space-between;
 }
+
+.recipient-table .recipient .recipient-table-row .name {
+  font-weight: 600;
+}
+
+.recipient-table .recipient .recipient-table-row .split {
+  flex: 0 0 auto;
+  margin-left: 16px;
+}
+

@@ -42,7 +42,7 @@ export const Boost = ({ setCurrentPage }: Props) => {
 
   return (
     <div className='outer-wrapper'>
-      <HeaderBar showMoreButton />
+      <HeaderBar setCurrentPage={setCurrentPage} showMoreButton />
       <div className='boost container-wrapper'>
         {
           isQuerying && (
