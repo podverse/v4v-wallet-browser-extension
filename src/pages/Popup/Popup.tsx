@@ -59,78 +59,80 @@ const Popup = () => {
   }, [])
 
   return (
-    <div className="popup-wrapper theme-podverseDark">
-      {
-        !hasInitialized && (
-          <LoadingSpinner fillSpace size='large' />
-        )
-      }
-      {
-        hasInitialized && (
-          <>
-            {
-              currentPage === Constants.RouteNames.keys._about && (
-                <About setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._boost && (
-                <Boost setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._consent && (
-                <Consent setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._createWallet && (
-                <CreateWallet setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._deposit && (
-                <Deposit setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._exportWallet && (
-                <ExportWallet setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._importWallet && (
-                <ImportWallet setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._mainMenu && (
-                <MainMenu setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._noWallet && (
-                <NoWallet setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._settings && (
-                <Settings setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._transactionHistory && (
-                <TransactionHistory setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
-              currentPage === Constants.RouteNames.keys._withdraw && (
-                <Withdraw setCurrentPage={setCurrentPage} />
-              )
-            }
-          </>
-        )
-      }
+    <div className='theme-wrapper theme-podverse'>
+      <div className="popup-wrapper">
+        {
+          !hasInitialized && (
+            <LoadingSpinner fillSpace size='large' />
+          )
+        }
+        {
+          hasInitialized && (
+            <>
+              {
+                currentPage === Constants.RouteNames.keys._about && (
+                  <About setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._boost && (
+                  <Boost setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._consent && (
+                  <Consent setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._createWallet && (
+                  <CreateWallet setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._deposit && (
+                  <Deposit setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._exportWallet && (
+                  <ExportWallet setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._importWallet && (
+                  <ImportWallet setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._mainMenu && (
+                  <MainMenu setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._noWallet && (
+                  <NoWallet setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._settings && (
+                  <Settings setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._transactionHistory && (
+                  <TransactionHistory setCurrentPage={setCurrentPage} />
+                )
+              }
+              {
+                currentPage === Constants.RouteNames.keys._withdraw && (
+                  <Withdraw setCurrentPage={setCurrentPage} />
+                )
+              }
+            </>
+          )
+        }
+      </div>
     </div>
   );
 };

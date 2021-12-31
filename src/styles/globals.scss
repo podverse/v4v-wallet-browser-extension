@@ -9,7 +9,7 @@ p {
 
 a {
   @include themeGen() {
-    color: getThemeVal('linkColor');
+    color: getThemeVal('linkTextColor');
   }
 }
 
@@ -17,7 +17,7 @@ a:hover {
   cursor: pointer;
 
   @include themeGen() {
-    color: getThemeVal('linkColorHover');
+    color: getThemeVal('linkTextColorHover');
   }
 }
 
@@ -45,6 +45,11 @@ button {
 
   /* Corrects inability to style clickable `input` types in iOS */
   -webkit-appearance: none;
+}
+
+.theme-wrapper {
+  display: flex;
+  flex: 1;
 }
 
 .fill-space {

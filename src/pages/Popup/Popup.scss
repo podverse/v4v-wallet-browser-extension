@@ -1,7 +1,11 @@
 .popup-wrapper {
-  background-color: #000000;
-  border: 1px solid #333333;
+  border: 1px solid;
   color: #ffffff;
   display: flex;
   flex: 1;
+
+  @include themeGen() {
+    background-color: getThemeVal('popupBackgroundColor');
+    border-color: getThemeVal('popupBorderColor');
+  }
 }

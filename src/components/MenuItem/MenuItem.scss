@@ -1,11 +1,16 @@
 .menu-item {
   .link {
-    color: #ffffff;
     display: block;
     padding: 16px 0;
 
+    @include themeGen() {
+      color: getThemeVal('menuItemTextColor');
+    }
+
     &:hover {
-      color: #cccccc;
+      @include themeGen() {
+        color: getThemeVal('menuItemHoverTextColor');
+      }
     }
   }
 }

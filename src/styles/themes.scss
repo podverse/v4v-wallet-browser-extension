@@ -1,9 +1,47 @@
 $themes: (
-  'podverseDark': (
-    'linkColor': #74A8DC,
-    'linkColorHover': #49A4FF
+  'podverse': (
+    'buttonDisabledBackgroundColor': #808080,
+    'buttonDisabledBorderColor': #808080,
+    'buttonDisabledTextColor': #CCCCCC,
+
+    'buttonPrimaryBackgroundColor': #3D9DFE,
+    'buttonPrimaryBorderColor': #3D9DFE,
+    'buttonPrimaryTextColor': #000000,
+    'buttonPrimaryHoverBackgroundColor': #49A4FF,
+    'buttonPrimaryHoverBorderColor': #49A4FF,
+    'buttonPrimaryHoverTextColor': #000000,
+
+    'buttonSecondaryBackgroundColor': #252a6499,
+    'buttonSecondaryBorderColor': #252a6499,
+    'buttonSecondaryTextColor': #FFFFFF,
+    'buttonSecondaryHoverBackgroundColor': #34397b,
+    'buttonSecondaryHoverBorderColor': #34397b,
+    'buttonSecondaryHoverTextColor': #FFFFFF,
+
+    'buttonDangerBackgroundColor': #BD2130,
+    'buttonDangerBorderColor': #BD2130,
+    'buttonDangerTextColor': #FFFFFF,
+    'buttonDangerHoverBackgroundColor': #C43745,
+    'buttonDangerHoverBorderColor': #C43745,
+    'buttonDangerHoverTextColor': #FFFFFF,
+
+    'headerBarBorderColor': #CCCCCC,
+    'headerBarMoreButtonColor': #FFFFFF,
+    'headerBarMoreButtonHoverColor': #CCCCCC,
+
+    'linkTextColor': #74A8DC,
+    'linkTextColorHover': #49A4FF,
+
+    'loadingSpinnerIndicatorColor': #FFFFFF,
+    'loadingSpinnerTransparentColor': rgba(255, 255, 255, 0.2),
+
+    'menuItemTextColor': #FFFFFF,
+    'menuItemHoverTextColor': #CCCCCC,
+
+    'popupBackgroundColor': #000000,
+    'popupBorderColor': #333333
   ),
-  'podverseLight': ()
+  'podverse-light': ()
 );
 
 /**

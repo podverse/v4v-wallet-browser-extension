@@ -7,51 +7,73 @@
   width: 100%;
   
   &:disabled {
-    background-color: #808080 !important;
-    border: 1px solid #808080 !important;
-    color: #cccccc !important;
     cursor:not-allowed;
+    
+    @include themeGen() {
+      background-color: getThemeVal('buttonDisabledBackgroundColor') !important;
+      border: 1px solid getThemeVal('buttonDisabledBorderColor') !important;
+      color: getThemeVal('buttonDisabledTextColor') !important;
+    }
   }
 
   &.is-link {
-    color: #74a8dc;
+    @include themeGen() {
+      color: getThemeVal('linkTextColor');
+    }
   }
 
   &.is-link:hover {
-    color: #49a4ff;
+    @include themeGen() {
+      color: getThemeVal('linkTextColorHover');
+    }
   }
 
   &.is-primary {
-    background-color: #3d9dfe;
-    border: 1px solid #3d9dfe;
-    color: #000000;
+    @include themeGen() {
+      background-color: getThemeVal('buttonPrimaryBackgroundColor');
+      border: 1px solid getThemeVal('buttonPrimaryBorderColor');
+      color: getThemeVal('buttonPrimaryTextColor');
+    }
   }
 
   &.is-primary:hover, .button.is-primary:focus {
-    background-color: #49a4ff;
-    border: 1px solid #49a4ff;
+    @include themeGen() {
+      background-color: getThemeVal('buttonPrimaryHoverBackgroundColor');
+      border: 1px solid getThemeVal('buttonPrimaryHoverBorderColor');
+      color: getThemeVal('buttonPrimaryHoverTextColor');
+    }
   }
 
   &.is-secondary {
-    background-color: #252a6499;
-    border: 1px solid #252a6499;
-    color: #ffffff;
+    @include themeGen() {
+      background-color: getThemeVal('buttonSecondaryBackgroundColor');
+      border: 1px solid getThemeVal('buttonSecondaryBorderColor');
+      color: getThemeVal('buttonSecondaryTextColor');
+    }
   }
 
   &.is-secondary:hover, &.is-secondary:active, &.is-secondary:focus {
-    background-color: #34397b;
-    border: 1px solid #34397b;
+    @include themeGen() {
+      background-color: getThemeVal('buttonSecondaryHoverBackgroundColor');
+      border: 1px solid getThemeVal('buttonSecondaryHoverBorderColor');
+      color: getThemeVal('buttonSecondaryHoverTextColor');
+    }
   }
 
   &.is-danger {
-    background-color: #bd2130;
-    border: 1px solid #bd2130;
-    color: #ffffff;
+    @include themeGen() {
+      background-color: getThemeVal('buttonDangerBackgroundColor');
+      border: 1px solid getThemeVal('buttonDangerBorderColor');
+      color: getThemeVal('buttonDangerTextColor');
+    }
   }
 
   &.is-danger:hover, &.is-danger:active, &.is-danger:focus {
-    background-color: #c43745;
-    border: 1px solid #c43745;
+    @include themeGen() {
+      background-color: getThemeVal('buttonDangerHoverBackgroundColor');
+      border: 1px solid getThemeVal('buttonDangerHoverBorderColor');
+      color: getThemeVal('buttonDangerHoverTextColor');
+    }
   }
 
   .text-wrapper {
