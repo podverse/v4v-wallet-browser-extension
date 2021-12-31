@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import './Popup.scss';
+import React, { useEffect, useState } from 'react'
+import '../../styles/index'
 import type { V4VHiddenElement } from '../../lib/types'
-
 import {
   About,
   Boost,
@@ -60,7 +59,7 @@ const Popup = () => {
   }, [])
 
   return (
-    <div className="popup-wrapper">
+    <div className="popup-wrapper theme-podverseDark">
       {
         !hasInitialized && (
           <LoadingSpinner fillSpace size='large' />
