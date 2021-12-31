@@ -14,7 +14,9 @@ export const Withdraw = ({ setCurrentPage }: Props) => {
   return (
     <div className='withdraw container-wrapper'>
       <BackButton handleSetCurrentPage={handleBackButton} />
-      Withdraw
+      <div className='fill-space'>
+        Withdraw
+      </div>
     </div>
   )
 }

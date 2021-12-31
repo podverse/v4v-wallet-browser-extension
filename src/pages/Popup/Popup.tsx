@@ -90,11 +90,6 @@ const Popup = () => {
               )
             }
             {
-              currentPage === Constants.RouteNames.keys._mainMenu && (
-                <MainMenu setCurrentPage={setCurrentPage} />
-              )
-            }
-            {
               currentPage === Constants.RouteNames.keys._deposit && (
                 <Deposit setCurrentPage={setCurrentPage} />
               )
@@ -107,6 +102,11 @@ const Popup = () => {
             {
               currentPage === Constants.RouteNames.keys._importWallet && (
                 <ImportWallet setCurrentPage={setCurrentPage} />
+              )
+            }
+            {
+              currentPage === Constants.RouteNames.keys._mainMenu && (
+                <MainMenu setCurrentPage={setCurrentPage} />
               )
             }
             {

@@ -14,7 +14,9 @@ export const Settings = ({ setCurrentPage }: Props) => {
   return (
     <div className='settings container-wrapper'>
       <BackButton handleSetCurrentPage={handleBackButton} />
-      Settings
+      <div className='fill-space'>
+        Settings
+      </div>
     </div>
   )
 }

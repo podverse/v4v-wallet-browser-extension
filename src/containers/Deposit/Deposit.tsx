@@ -14,7 +14,9 @@ export const Deposit = ({ setCurrentPage }: Props) => {
   return (
     <div className='deposit container-wrapper'>
       <BackButton handleSetCurrentPage={handleBackButton} />
-      Deposit
+      <div className='fill-space'>
+        Deposit
+      </div>
     </div>
   )
 }

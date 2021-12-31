@@ -14,7 +14,9 @@ export const ExportWallet = ({ setCurrentPage }: Props) => {
   return (
     <div className='export-wallet container-wrapper'>
       <BackButton handleSetCurrentPage={handleBackButton} />
-      ExportWallet
+      <div className='fill-space'>
+        ExportWallet
+      </div>
     </div>
   )
 }
