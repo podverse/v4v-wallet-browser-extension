@@ -34,7 +34,6 @@ chrome.tabs.query({ active: true }, function (tabs) {
 
 const Popup = () => {
   const [currentPage, setCurrentPage] = useState(Constants.RouteNames.keys._consent)
-  const [v4vHiddenElement, setV4VHiddenElement] = useState<V4VHiddenElement | null>(null)
   const [hasInitialized, setHasInitialized] = useState(false)
 
   useEffect(() => {
@@ -44,7 +43,7 @@ const Popup = () => {
         'v4vHiddenElement',
         'walletInfo'
       ])
-      const { acceptedTermsOfService, v4vHiddenElement, walletInfo } = storageData
+      const { acceptedTermsOfService, walletInfo } = storageData
 
       if (!acceptedTermsOfService) {
         setCurrentPage(Constants.RouteNames.keys._consent)
