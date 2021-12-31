@@ -1,0 +1,26 @@
+.no-wallet-container {
+  h1 {
+    margin: 48px 0 0 0;
+    text-align: center;
+  }
+
+  .button-wrapper {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    
+    .create-wallet {
+      margin-bottom: 32px;
+    }
+    
+    .import-wallet {
+      margin-bottom: 0;
+    }
+  }
+  
+  .footer {
+    margin: 16px auto 32px auto;
+  }
+}

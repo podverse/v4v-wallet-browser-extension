@@ -1,9 +1,0 @@
-.back-button-wrapper {
-  display: flex;
-}
-
-.back-button-wrapper .back-button {
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
-}
