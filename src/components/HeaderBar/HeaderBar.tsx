@@ -9,7 +9,7 @@ type Props = {
 
 export const HeaderBar = ({ setCurrentPage, showMoreButton }: Props) => {
   const handleMoreButtonClick = () => {
-    setCurrentPage(Constants.RouteNames.keys._dashboard)
+    setCurrentPage(Constants.RouteNames.keys._mainMenu)
   }
 
   return (

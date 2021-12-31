@@ -7,7 +7,7 @@ import {
   Boost,
   Consent,
   CreateWallet,
-  Dashboard,
+  MainMenu,
   Deposit,
   ExportWallet,
   ImportWallet,
@@ -90,8 +90,8 @@ const Popup = () => {
               )
             }
             {
-              currentPage === Constants.RouteNames.keys._dashboard && (
-                <Dashboard setCurrentPage={setCurrentPage} />
+              currentPage === Constants.RouteNames.keys._mainMenu && (
+                <MainMenu setCurrentPage={setCurrentPage} />
               )
             }
             {

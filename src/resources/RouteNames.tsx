@@ -4,7 +4,7 @@ export const RouteNames = {
     _boost: 'Boost',
     _consent: 'Consent',
     _createWallet: 'CreateWallet',
-    _dashboard: 'Dashboard',
+    _mainMenu: 'MainMenu',
     _deposit: 'Deposit',
     _exportWallet: 'ExportWallet',
     _importWallet: 'ImportWallet',

@@ -1,12 +1,19 @@
 import React from 'react'
+import { BackButton } from '../../components'
+import { Constants } from '../../resources'
 
 type Props = {
   setCurrentPage: any
 }
 
 export const TransactionHistory = ({ setCurrentPage }: Props) => {
+  const handleBackButton = () => {
+    setCurrentPage(Constants.RouteNames.keys._mainMenu)
+  }
+
   return (
-    <div className='container-wrapper'>
+    <div className='transaction-history container-wrapper'>
+      <BackButton handleSetCurrentPage={handleBackButton} />
       TransactionHistory
     </div>
   )
