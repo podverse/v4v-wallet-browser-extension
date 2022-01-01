@@ -1,16 +1,17 @@
 export const handleV4VHiddenElement = () => {
-  const v4vHiddenElementClass = '.v4v-hidden-element'
-  const v4vCurrentPlaybackPositionClass = 'data-v4v-current-playback-position'
-  const v4vPodcastIndexIdClass = 'data-v4v-podcast-index-id'
-  const v4vEpisodeEnclosureUrlClass = 'data-v4v-episode-enclosure-url'
-  const v4vIsPlayingClass = 'data-v4v-is-playing'
+  const v4vHiddenElementAttr = '.v4v-hidden-element'
+  const v4vCurrentPlaybackPositionAttr = 'data-v4v-current-playback-position'
+  const v4vPodcastIndexIdAttr = 'data-v4v-podcast-index-id'
+  const v4vEpisodeEnclosureUrlAttr = 'data-v4v-episode-enclosure-url'
+  const v4vIsPlayingAttr = 'data-v4v-is-playing'
+  const v4vUIThemeAttr = 'data-v4v-ui-theme'
 
   const handleV4VHiddenElementChanges = (el: any) => {
     var observer = new MutationObserver(function (mutations) {
       mutations.forEach(function (mutation) {
         if (mutation.type === "attributes") {
-          if (mutation.attributeName === v4vIsPlayingClass)
-            console.log("attributes changed", v4vIsPlayingClass, mutation)
+          if (mutation.attributeName === v4vIsPlayingAttr)
+            console.log("attributes changed", v4vIsPlayingAttr, mutation)
         }
       });
     });
@@ -23,20 +24,22 @@ export const handleV4VHiddenElement = () => {
   let parsedItem = null
 
   try {
-    const el = document.querySelector(v4vHiddenElementClass)
+    const el = document.querySelector(v4vHiddenElementAttr)
     if (el) {
-      const enclosureUrl = el.getAttribute(v4vEpisodeEnclosureUrlClass)
-      const isPlaying = el.getAttribute(v4vIsPlayingClass) === 'true'
-      const playbackPositionAttr = el.getAttribute(v4vCurrentPlaybackPositionClass)
+      const enclosureUrl = el.getAttribute(v4vEpisodeEnclosureUrlAttr)
+      const isPlaying = el.getAttribute(v4vIsPlayingAttr) === 'true'
+      const playbackPositionAttr = el.getAttribute(v4vCurrentPlaybackPositionAttr)
       const playbackPosition = playbackPositionAttr ? parseInt(playbackPositionAttr, 10) : 0
-      const podcastIndexIdAttr = el.getAttribute(v4vPodcastIndexIdClass)
+      const podcastIndexIdAttr = el.getAttribute(v4vPodcastIndexIdAttr)
       const podcastIndexId = podcastIndexIdAttr ? parseInt(podcastIndexIdAttr, 10) : null
+      const uiTheme = el.getAttribute(v4vUIThemeAttr)
 
       parsedItem = {
         enclosureUrl,
         isPlaying,
         playbackPosition,
-        podcastIndexId
+        podcastIndexId,
+        uiTheme
       }
     }
 

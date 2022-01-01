@@ -16,34 +16,50 @@ import {
   Withdraw
 } from '../../containers'
 import { LoadingSpinner } from '../../components';
+import { getHostname, getUITheme } from '../../lib/utility'
 import { handleV4VHiddenElement } from '../../lib/v4vHiddenElement';
 import { Constants } from '../../resources/Constants'
 
-chrome.tabs.query({ active: true }, function (tabs) {
+chrome.tabs.query({ active: true }, async function (tabs) {
   let tab = tabs[0];
 
   if (tab?.id) {
+    const updateConnectedTabInfo = async () => {
+      await chrome.storage.local.set({
+        connectedTabInfo: {
+          hostname: getHostname(tab.url || ''),
+          streamingEnabled: true,
+          tabId: tab.id
+        }
+      })
+    }
+
+    await updateConnectedTabInfo()
+
     chrome.scripting.executeScript(
       {
         target: { tabId: tab.id },
         func: handleV4VHiddenElement
       }
-    );
+    )
   }
 });
 
 const Popup = () => {
   const [currentPage, setCurrentPage] = useState(Constants.RouteNames.keys._consent)
   const [hasInitialized, setHasInitialized] = useState(false)
+  const [selectedTheme, setSelectedTheme] = useState<string>('podverse')
 
   useEffect(() => {
     ; (async () => {
       const storageData = await chrome.storage.local.get([
         'acceptedTermsOfService',
+        'connectedTabInfo',
+        'settings',
         'v4vHiddenElement',
         'walletInfo'
       ])
-      const { acceptedTermsOfService, walletInfo } = storageData
+      const { acceptedTermsOfService, connectedTabInfo, v4vHiddenElement, walletInfo } = storageData
 
       if (!acceptedTermsOfService) {
         setCurrentPage(Constants.RouteNames.keys._consent)
@@ -53,12 +69,19 @@ const Popup = () => {
         setCurrentPage(Constants.RouteNames.keys._boost)
       }
 
+      const hostname = connectedTabInfo?.hostname
+      const uiTheme = v4vHiddenElement?.uiTheme
+      const selectedTheme = getUITheme(hostname, uiTheme)
+      setSelectedTheme(selectedTheme)
+
       setHasInitialized(true)
     })()
   }, [])
 
+  const wrapperClassName = `theme-wrapper theme-${selectedTheme}`
+
   return (
-    <div className='theme-wrapper theme-podverse'>
+    <div className={wrapperClassName}>
       <div className="popup-wrapper">
         {
           !hasInitialized && (
