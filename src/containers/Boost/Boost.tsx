@@ -1,8 +1,8 @@
+import { useOmniAural } from 'omniaural'
 import React, { useEffect, useRef, useState } from 'react'
 import { Button, HeaderBar, LoadingSpinner, RecipientTable, TextArea } from '../../components'
 import { getPodcastIndexItemInfo } from '../../lib/podcastIndex'
-import type { V4VItem } from '../../lib/types'
-const { useOmniAural } = require('omniaural')
+import type { V4VItem } from '../../types'
 
 type Props = {
   hideContainer: boolean

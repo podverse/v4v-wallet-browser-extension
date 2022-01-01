@@ -1,7 +1,7 @@
 import sha1 from 'crypto-js/sha1'
 import { Constants } from '../resources'
 import { request } from './request'
-import type { V4VItem, ValueRecipient, ValueTag } from './types'
+import type { V4VItem, ValueRecipient, ValueTag } from '../types'
 
 const generateAuthorizationHeaders = () => {
   const authKey = '' // Don't push these to the repo!

@@ -1,6 +1,6 @@
+import OmniAural from 'omniaural'
 import React, { useEffect, useState } from 'react'
 import '../../styles/index'
-import type { V4VHiddenElement } from '../../lib/types'
 import {
   About,
   Boost,
@@ -21,7 +21,7 @@ import { Constants } from '../../resources/Constants'
 
 import '../../state/index.tsx'
 import initialState from '../../state/initialState.json'
-const OmniAural = require('omniaural')
+
 OmniAural.initGlobalState(initialState)
 
 chrome.tabs.query({ active: true }, async function (tabs) {

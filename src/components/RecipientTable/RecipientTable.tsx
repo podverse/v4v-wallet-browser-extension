@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ValueRecipient, ValueTag } from '../../lib/types'
+import { ValueRecipient, ValueTag } from '../../types'
 
 type Props = {
   valueTag?: ValueTag

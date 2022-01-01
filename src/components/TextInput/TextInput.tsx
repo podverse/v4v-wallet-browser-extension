@@ -5,13 +5,14 @@ type Props = {
   label: string
   onBlur?: any
   placeholder?: string
+  type: 'number' | 'text'
 }
 
-const Component = ({ defaultValue, label, onBlur, placeholder }: Props, ref: any) => {
+const Component = ({ defaultValue, label, onBlur, placeholder, type }: Props, ref: any) => {
   return (
     <div className='text-input-wrapper'>
       <label>{label}</label>
-      <input defaultValue={defaultValue} onBlur={onBlur} placeholder={placeholder} ref={ref} />
+      <input defaultValue={defaultValue} onBlur={onBlur} placeholder={placeholder} ref={ref} type={type} />
     </div>
   )
 }
