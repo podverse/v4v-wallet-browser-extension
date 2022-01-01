@@ -49,7 +49,8 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
   }
 
   const wrapperClassName = `outer-wrapper ${hideContainer ? 'hide' : ''}`
-  const boostButtonAmountText = `${settings.boostAmount} sats`
+  const totalBoostButtonAmount = settings.payments.toPodcast.boostAmount + settings.payments.toPodcastApp.boostAmount
+  const boostButtonAmountText = `${totalBoostButtonAmount} sats`
 
   return (
     <div className={wrapperClassName}>

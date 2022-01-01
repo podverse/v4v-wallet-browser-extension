@@ -2,13 +2,16 @@ import React, { forwardRef } from 'react'
 
 type Props = {
   defaultValue?: string
+  label: string
+  onBlur?: any
   placeholder?: string
 }
 
-const Component = ({ defaultValue, placeholder }: Props, ref: any) => {
+const Component = ({ defaultValue, label, onBlur, placeholder }: Props, ref: any) => {
   return (
     <div className='text-input-wrapper'>
-      <input defaultValue={defaultValue} placeholder={placeholder} ref={ref} />
+      <label>{label}</label>
+      <input defaultValue={defaultValue} onBlur={onBlur} placeholder={placeholder} ref={ref} />
     </div>
   )
 }

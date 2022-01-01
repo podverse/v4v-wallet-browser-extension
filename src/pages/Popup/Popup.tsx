@@ -19,6 +19,7 @@ import { LoadingSpinner } from '../../components';
 import { handleV4VHiddenElement } from '../../lib/v4vHiddenElement';
 import { Constants } from '../../resources/Constants'
 
+import '../../state/index.tsx'
 import initialState from '../../state/initialState.json'
 const OmniAural = require('omniaural')
 OmniAural.initGlobalState(initialState)
@@ -39,8 +40,16 @@ chrome.tabs.query({ active: true }, async function (tabs) {
 const initializeSettings = async () => {
   await chrome.storage.local.set({
     settings: {
-      boostAmount: 250,
-      streamingAmount: 10
+      payments: {
+        toPodcast: {
+          boostAmount: 190,
+          streamingAmount: 19
+        },
+        toPodcastApp: {
+          boostAmount: 10,
+          streamingAmount: 1
+        }
+      }
     }
   })
 }

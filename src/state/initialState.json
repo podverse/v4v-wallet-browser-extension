@@ -1,6 +1,14 @@
 {
   "settings": {
-    "boostAmount": 250,
-    "streamingAmount": 10
+    "payments": {
+      "toPodcast": {
+        "boostAmount": 190,
+        "streamingAmount": 19
+      },
+      "toPodcastApp": {
+        "boostAmount": 10,
+        "streamingAmount": 1
+      }
+    }
   }
 }
