@@ -19,7 +19,12 @@ export const Boost = ({ setCurrentPage }: Props) => {
         'v4vHiddenElement'
       ])
       const { v4vHiddenElement } = storageData
-      const v4vItemInfo = await getPodcastIndexItemInfo(v4vHiddenElement.podcastIndexId, v4vHiddenElement.enclosureUrl)
+
+      let v4vItemInfo: any = null
+      if (v4vHiddenElement?.podcastIndexId) {
+        v4vItemInfo = await getPodcastIndexItemInfo(
+          v4vHiddenElement.podcastIndexId, v4vHiddenElement.enclosureUrl)
+      }
 
       // TEMP: setTimeout for dev purposes
       setTimeout(() => {
@@ -46,11 +51,18 @@ export const Boost = ({ setCurrentPage }: Props) => {
       <div className='boost container-wrapper'>
         {
           isQuerying && (
-            <LoadingSpinner fillSpace size='small' />
+            <LoadingSpinner fillSpace size='large' />
           )
         }
         {
-          !isQuerying && (
+          !v4vItem && !isQuerying && (
+            <div className='fill-space'>
+              <h1>This site is not V4V enabled.</h1>
+            </div>
+          )
+        }
+        {
+          v4vItem && !isQuerying && (
             <>
               <div className='podcast-info'>
                 <div className='podcast-title'>{v4vItem?.podcastTitle}</div>
