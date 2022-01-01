@@ -18,7 +18,7 @@ export const TransactionHistory = ({ hideContainer, setCurrentPage }: Props) => 
     <div className={wrapperClassName}>
       <BackButton handleSetCurrentPage={handleBackButton} />
       <div className='fill-space'>
-        TransactionHistory
+        <h1>Transaction History</h1>
       </div>
     </div>
   )

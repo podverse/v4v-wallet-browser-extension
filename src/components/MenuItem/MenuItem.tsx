@@ -10,6 +10,7 @@ export const MenuItem = ({ handleSetCurrentPage, text }: Props) => {
   return (
     <div className='menu-item'>
       <Link handleSetCurrentPage={handleSetCurrentPage} text={text} />
+      <hr />
     </div>
   )
 }

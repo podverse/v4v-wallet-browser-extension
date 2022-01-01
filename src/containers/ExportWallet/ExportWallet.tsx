@@ -1,5 +1,5 @@
 import React from 'react'
-import { BackButton } from '../../components'
+import { BackButton, Button } from '../../components'
 import { Constants } from '../../resources'
 
 type Props = {
@@ -17,9 +17,13 @@ export const ExportWallet = ({ hideContainer, setCurrentPage }: Props) => {
   return (
     <div className={wrapperClassName}>
       <BackButton handleSetCurrentPage={handleBackButton} />
-      <div className='fill-space'>
-        ExportWallet
-      </div>
+      <h1>Export</h1>
+      <h2>Download Wallet Keys</h2>
+      <p>Download a text file containing your wallet keys.</p>
+      <Button isPrimary text='Download' />
+      <hr />
+      <h2>QR Code</h2>
+      <p>Scan this QR code with a V4V compatible app to import your wallet keys.</p>
     </div>
   )
 }
