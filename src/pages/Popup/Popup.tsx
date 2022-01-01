@@ -32,6 +32,15 @@ chrome.tabs.query({ active: true }, async function (tabs) {
   }
 });
 
+const initializeSettings = async () => {
+  await chrome.storage.local.set({
+    settings: {
+      boostAmount: 250,
+      streamingAmount: 10
+    }
+  })
+}
+
 const Popup = () => {
   const [currentPage, setCurrentPage] = useState(Constants.RouteNames.keys._consent)
   const [hasInitialized, setHasInitialized] = useState(false)
@@ -46,7 +55,11 @@ const Popup = () => {
         'v4vHiddenElement',
         'walletInfo'
       ])
-      const { acceptedTermsOfService, connectedTabInfo, v4vHiddenElement, walletInfo } = storageData
+      const { acceptedTermsOfService, settings, walletInfo } = storageData
+
+      if (!settings) {
+        await initializeSettings()
+      }
 
       if (!acceptedTermsOfService) {
         setCurrentPage(Constants.RouteNames.keys._consent)
