@@ -19,6 +19,10 @@ import { LoadingSpinner } from '../../components';
 import { handleV4VHiddenElement } from '../../lib/v4vHiddenElement';
 import { Constants } from '../../resources/Constants'
 
+import initialState from '../../state/initialState.json'
+const OmniAural = require('omniaural')
+OmniAural.initGlobalState(initialState)
+
 chrome.tabs.query({ active: true }, async function (tabs) {
   let tab = tabs[0];
 

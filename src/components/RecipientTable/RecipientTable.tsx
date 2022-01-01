@@ -15,9 +15,9 @@ export const RecipientTable = ({ valueTag }: Props) => {
 
   const generateRecipients = () => {
     const recipients = valueTag?.recipients || []
-    return recipients.map((recipient: ValueRecipient) => {
+    return recipients.map((recipient: ValueRecipient, index: number) => {
       return (
-        <div className='recipient'>
+        <div className='recipient' key={`recipient-${index}`}>
           <div className='recipient-table-row'>
             <div className='name'>{recipient.name}</div>
             <div className='split'>{recipient.split}%</div>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Button, HeaderBar, LoadingSpinner, RecipientTable, TextArea } from '../../components'
 import { getPodcastIndexItemInfo } from '../../lib/podcastIndex'
 import type { V4VItem } from '../../lib/types'
+const { useOmniAural } = require('omniaural')
 
 type Props = {
   hideContainer: boolean
@@ -13,6 +14,7 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
   const [isQuerying, setIsQuerying] = useState<boolean>(true)
   const [v4vItem, setV4VItem] = useState<V4VItem | null>(null)
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
+  const [settings] = useOmniAural('settings')
 
   useEffect(() => {
     ; (async () => {
@@ -47,6 +49,7 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
   }
 
   const wrapperClassName = `outer-wrapper ${hideContainer ? 'hide' : ''}`
+  const boostButtonAmountText = `${settings.boostAmount} sats`
 
   return (
     <div className={wrapperClassName}>
@@ -72,7 +75,7 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
                 <div className='episode-title'>{v4vItem?.episodeTitle}</div>
               </div>
               <div className='boost-wrapper'>
-                <Button className='boost-button' isLoading={isBoosting} isSecondary text='Boost' onClick={handleBoost} textBottom='500 sats' />
+                <Button className='boost-button' isLoading={isBoosting} isSecondary text='Boost' onClick={handleBoost} textBottom={boostButtonAmountText} />
                 <TextArea defaultValue='' placeholder='send a boostagram' ref={textAreaRef} />
               </div>
               {/* <Button className='stream-button' isSecondary text='Stream' /> */}
