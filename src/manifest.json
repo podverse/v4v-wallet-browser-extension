@@ -17,6 +17,7 @@
     "activeTab",
     "scripting",
     "storage",
+    "tabs",
     "webNavigation"
   ],
   "content_scripts": [
