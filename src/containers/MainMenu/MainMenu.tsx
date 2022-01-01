@@ -3,16 +3,19 @@ import { BackButton, MenuItem } from '../../components'
 import { Constants } from '../../resources'
 
 type Props = {
+  hideContainer: boolean
   setCurrentPage: any
 }
 
-export const MainMenu = ({ setCurrentPage }: Props) => {
+export const MainMenu = ({ hideContainer, setCurrentPage }: Props) => {
   const handleBackButton = () => {
     setCurrentPage(Constants.RouteNames.keys._boost)
   }
 
+  const wrapperClassName = `main-menu container-wrapper ${hideContainer ? 'hide' : ''}`
+
   return (
-    <div className='main-menu container-wrapper'>
+    <div className={wrapperClassName}>
       <BackButton handleSetCurrentPage={handleBackButton} />
       <MenuItem
         handleSetCurrentPage={() => setCurrentPage(Constants.RouteNames.keys._deposit)}

@@ -3,10 +3,11 @@ import { BackButton, Button } from '../../components'
 import { Constants } from '../../resources'
 
 type Props = {
+  hideContainer: boolean
   setCurrentPage: any
 }
 
-export const CreateWallet = ({ setCurrentPage }: Props) => {
+export const CreateWallet = ({ hideContainer, setCurrentPage }: Props) => {
   const handleBackButton = () => {
     setCurrentPage(Constants.RouteNames.keys._noWallet)
   }
@@ -16,8 +17,10 @@ export const CreateWallet = ({ setCurrentPage }: Props) => {
     setCurrentPage(Constants.RouteNames.keys._boost)
   }
 
+  const wrapperClassName = `container-wrapper ${hideContainer ? 'hide' : ''}`
+
   return (
-    <div className='container-wrapper'>
+    <div className={wrapperClassName}>
       <BackButton handleSetCurrentPage={handleBackButton} />
       <div className='create-wallet-container'>
         <Button className='create-wallet' isSecondary onClick={handleCreateWallet} text='Create Wallet' />

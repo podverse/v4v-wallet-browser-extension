@@ -3,10 +3,11 @@ import { Button, Checkbox, Link } from '../../components'
 import { Constants } from '../../resources/Constants'
 
 type Props = {
+  hideContainer: boolean
   setCurrentPage: any
 }
 
-export const Consent = ({ setCurrentPage }: Props) => {
+export const Consent = ({ hideContainer, setCurrentPage }: Props) => {
   const [hasAccepted, setHasAccepted] = useState<boolean>(false)
 
   const handleAccept = async () => {
@@ -19,8 +20,10 @@ export const Consent = ({ setCurrentPage }: Props) => {
     window.close()
   }
 
+  const wrapperClassName = `consent container-wrapper ${hideContainer ? 'hide' : ''}`
+
   return (
-    <div className='consent container-wrapper'>
+    <div className={wrapperClassName}>
       <h1>Terms of Service</h1>
       <p>The V4V Wallet lets you make network requests to send Bitcoin transactions over the Bitcoin Lightning Network.</p>
       <p>All V4V Wallet software is provided AS IS, with no warranty. Your transactions cannot be reversed or recovered.</p>

@@ -3,16 +3,19 @@ import { BackButton } from '../../components'
 import { Constants } from '../../resources'
 
 type Props = {
+  hideContainer: boolean
   setCurrentPage: any
 }
 
-export const TransactionHistory = ({ setCurrentPage }: Props) => {
+export const TransactionHistory = ({ hideContainer, setCurrentPage }: Props) => {
   const handleBackButton = () => {
     setCurrentPage(Constants.RouteNames.keys._mainMenu)
   }
 
+  const wrapperClassName = `transaction-history container-wrapper ${hideContainer ? 'hide' : ''}`
+
   return (
-    <div className='transaction-history container-wrapper'>
+    <div className={wrapperClassName}>
       <BackButton handleSetCurrentPage={handleBackButton} />
       <div className='fill-space'>
         TransactionHistory

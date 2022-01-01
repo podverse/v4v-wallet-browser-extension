@@ -3,10 +3,11 @@ import { Button, Link } from '../../components'
 import { Constants } from '../../resources'
 
 type Props = {
+  hideContainer: boolean
   setCurrentPage: any
 }
 
-export const NoWallet = ({ setCurrentPage }: Props) => {
+export const NoWallet = ({ hideContainer, setCurrentPage }: Props) => {
   const handleCreateWallet = () => {
     setCurrentPage(Constants.RouteNames.keys._createWallet)
   }
@@ -15,8 +16,10 @@ export const NoWallet = ({ setCurrentPage }: Props) => {
     setCurrentPage(Constants.RouteNames.keys._importWallet)
   }
 
+  const wrapperClassName = `no-wallet-container container-wrapper ${hideContainer ? 'hide' : ''}`
+
   return (
-    <div className='no-wallet-container container-wrapper'>
+    <div className={wrapperClassName}>
       <h1>V4V Wallet</h1>
       <div className='button-wrapper'>
         <Button className='create-wallet' isSecondary onClick={handleCreateWallet} text='Create Wallet' />

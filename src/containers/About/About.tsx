@@ -3,10 +3,11 @@ import { BackButton } from '../../components'
 import { Constants } from '../../resources'
 
 type Props = {
+  hideContainer: boolean
   setCurrentPage: any
 }
 
-export const About = ({ setCurrentPage }: Props) => {
+export const About = ({ hideContainer, setCurrentPage }: Props) => {
   const handleBackButton = async () => {
     const storageData = await chrome.storage.local.get([
       'acceptedTermsOfService',
@@ -23,8 +24,10 @@ export const About = ({ setCurrentPage }: Props) => {
     }
   }
 
+  const wrapperClassName = `container-wrapper ${hideContainer ? 'hide' : ''}`
+
   return (
-    <div className='container-wrapper'>
+    <div className={wrapperClassName}>
       <BackButton handleSetCurrentPage={handleBackButton} />
     </div>
   )

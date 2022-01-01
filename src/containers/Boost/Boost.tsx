@@ -4,10 +4,11 @@ import { getPodcastIndexItemInfo } from '../../lib/podcastIndex'
 import type { V4VItem } from '../../lib/types'
 
 type Props = {
+  hideContainer: boolean
   setCurrentPage: any
 }
 
-export const Boost = ({ setCurrentPage }: Props) => {
+export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
   const [isBoosting, setIsBoosting] = useState<boolean>(false)
   const [isQuerying, setIsQuerying] = useState<boolean>(true)
   const [v4vItem, setV4VItem] = useState<V4VItem | null>(null)
@@ -45,8 +46,10 @@ export const Boost = ({ setCurrentPage }: Props) => {
     }, 1000)
   }
 
+  const wrapperClassName = `outer-wrapper ${hideContainer ? 'hide' : ''}`
+
   return (
-    <div className='outer-wrapper'>
+    <div className={wrapperClassName}>
       <HeaderBar setCurrentPage={setCurrentPage} showMoreButton />
       <div className='boost container-wrapper'>
         {

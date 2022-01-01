@@ -16,7 +16,6 @@ import {
   Withdraw
 } from '../../containers'
 import { LoadingSpinner } from '../../components';
-import { getHostname, getUITheme } from '../../lib/utility'
 import { handleV4VHiddenElement } from '../../lib/v4vHiddenElement';
 import { Constants } from '../../resources/Constants'
 
@@ -24,18 +23,6 @@ chrome.tabs.query({ active: true }, async function (tabs) {
   let tab = tabs[0];
 
   if (tab?.id) {
-    const updateConnectedTabInfo = async () => {
-      await chrome.storage.local.set({
-        connectedTabInfo: {
-          hostname: getHostname(tab.url || ''),
-          streamingEnabled: true,
-          tabId: tab.id
-        }
-      })
-    }
-
-    await updateConnectedTabInfo()
-
     chrome.scripting.executeScript(
       {
         target: { tabId: tab.id },
@@ -48,7 +35,7 @@ chrome.tabs.query({ active: true }, async function (tabs) {
 const Popup = () => {
   const [currentPage, setCurrentPage] = useState(Constants.RouteNames.keys._consent)
   const [hasInitialized, setHasInitialized] = useState(false)
-  const [selectedTheme, setSelectedTheme] = useState<string>('podverse')
+  const [selectedTheme, setSelectedTheme] = useState<string>('podverse-dark')
 
   useEffect(() => {
     ; (async () => {
@@ -69,11 +56,6 @@ const Popup = () => {
         setCurrentPage(Constants.RouteNames.keys._boost)
       }
 
-      const hostname = connectedTabInfo?.hostname
-      const uiTheme = v4vHiddenElement?.uiTheme
-      const selectedTheme = getUITheme(hostname, uiTheme)
-      setSelectedTheme(selectedTheme)
-
       setHasInitialized(true)
     })()
   }, [])
@@ -91,66 +73,18 @@ const Popup = () => {
         {
           hasInitialized && (
             <>
-              {
-                currentPage === Constants.RouteNames.keys._about && (
-                  <About setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._boost && (
-                  <Boost setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._consent && (
-                  <Consent setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._createWallet && (
-                  <CreateWallet setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._deposit && (
-                  <Deposit setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._exportWallet && (
-                  <ExportWallet setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._importWallet && (
-                  <ImportWallet setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._mainMenu && (
-                  <MainMenu setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._noWallet && (
-                  <NoWallet setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._settings && (
-                  <Settings setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._transactionHistory && (
-                  <TransactionHistory setCurrentPage={setCurrentPage} />
-                )
-              }
-              {
-                currentPage === Constants.RouteNames.keys._withdraw && (
-                  <Withdraw setCurrentPage={setCurrentPage} />
-                )
-              }
+              <About hideContainer={currentPage !== Constants.RouteNames.keys._about} setCurrentPage={setCurrentPage} />
+              <Boost hideContainer={currentPage !== Constants.RouteNames.keys._boost} setCurrentPage={setCurrentPage} />
+              <Consent hideContainer={currentPage !== Constants.RouteNames.keys._consent} setCurrentPage={setCurrentPage} />
+              <CreateWallet hideContainer={currentPage !== Constants.RouteNames.keys._createWallet} setCurrentPage={setCurrentPage} />
+              <Deposit hideContainer={currentPage !== Constants.RouteNames.keys._deposit} setCurrentPage={setCurrentPage} />
+              <ExportWallet hideContainer={currentPage !== Constants.RouteNames.keys._exportWallet} setCurrentPage={setCurrentPage} />
+              <ImportWallet hideContainer={currentPage !== Constants.RouteNames.keys._importWallet} setCurrentPage={setCurrentPage} />
+              <MainMenu hideContainer={currentPage !== Constants.RouteNames.keys._mainMenu} setCurrentPage={setCurrentPage} />
+              <NoWallet hideContainer={currentPage !== Constants.RouteNames.keys._noWallet} setCurrentPage={setCurrentPage} />
+              <Settings hideContainer={currentPage !== Constants.RouteNames.keys._settings} setCurrentPage={setCurrentPage} />
+              <TransactionHistory hideContainer={currentPage !== Constants.RouteNames.keys._transactionHistory} setCurrentPage={setCurrentPage} />
+              <Withdraw hideContainer={currentPage !== Constants.RouteNames.keys._withdraw} setCurrentPage={setCurrentPage} />
             </>
           )
         }

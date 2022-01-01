@@ -3,16 +3,19 @@ import { BackButton } from '../../components'
 import { Constants } from '../../resources'
 
 type Props = {
+  hideContainer: boolean
   setCurrentPage: any
 }
 
-export const Withdraw = ({ setCurrentPage }: Props) => {
+export const Withdraw = ({ hideContainer, setCurrentPage }: Props) => {
   const handleBackButton = () => {
     setCurrentPage(Constants.RouteNames.keys._mainMenu)
   }
 
+  const wrapperClassName = `withdraw container-wrapper ${hideContainer ? 'hide' : ''}`
+
   return (
-    <div className='withdraw container-wrapper'>
+    <div className={wrapperClassName}>
       <BackButton handleSetCurrentPage={handleBackButton} />
       <div className='fill-space'>
         Withdraw

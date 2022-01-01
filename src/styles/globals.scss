@@ -47,6 +47,10 @@ button {
   -webkit-appearance: none;
 }
 
+.hide {
+  display: none !important;
+}
+
 .theme-wrapper {
   display: flex;
   flex: 1;

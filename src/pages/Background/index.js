@@ -1,8 +1,18 @@
-chrome.tabs.query({ active: true }, function (tabs) {
-  let tab = tabs[0];
 
-  console.log('background active tab', tabs)
-});
+chrome.tabs.onActivated.addListener(function (activeInfo) {
+  chrome.tabs.get(activeInfo.tabId, function (tab) {
+    const updateConnectedTabInfo = async () => {
+      await chrome.storage.local.set({
+        connectedTabInfo: {
+          streamingEnabled: true,
+          tabId: tab.id
+        }
+      })
+    }
+
+    updateConnectedTabInfo()
+  })
+})
 
 const handleWebNavigationOnCompleted = (details) => {
   console.log('handleWebNavigationOnCompleted', details)
