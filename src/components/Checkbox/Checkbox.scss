@@ -6,14 +6,17 @@ input[type=checkbox] {
   margin: 0 0 16px 0;
   
   label {
+    cursor: pointer;
     display: flex;
     justify-content: flex-start;
     
     input {
+      cursor: pointer;
       margin: 0 10px 0 4px;
     }
     
     .text {
+      cursor: pointer;
       font-size: 14px;
       font-weight: 700;
       margin-top: -2px;

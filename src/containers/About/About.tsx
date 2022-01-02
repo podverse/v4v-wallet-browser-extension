@@ -24,11 +24,12 @@ export const About = ({ hideContainer, setCurrentPage }: Props) => {
     }
   }
 
-  const wrapperClassName = `container-wrapper ${hideContainer ? 'hide' : ''}`
+  const wrapperClassName = `about container-wrapper ${hideContainer ? 'hide' : ''}`
 
   return (
     <div className={wrapperClassName}>
       <BackButton handleSetCurrentPage={handleBackButton} />
+      <h1>About</h1>
     </div>
   )
 }

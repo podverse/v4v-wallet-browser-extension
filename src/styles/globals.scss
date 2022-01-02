@@ -68,7 +68,7 @@ button {
   -webkit-appearance: none;
 }
 
-input {
+input[type="number"], input[type="text"] {
   all: unset;
 }
 
