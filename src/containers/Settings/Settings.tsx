@@ -71,12 +71,11 @@ export const Settings = ({ hideContainer, setCurrentPage }: Props) => {
     <div className={wrapperClassName}>
       <BackButton handleSetCurrentPage={handleBackButton} />
       <h1>Settings</h1>
-      <h2>To Podcast</h2>
-      <TextInput defaultValue={settings.payments.toPodcast.boostAmount} label='Boost amount in satoshis' onBlur={handleSetPodcastBoostAmount} ref={toPodcastBoostAmountRef} type='number' />
-      <TextInput defaultValue={settings.payments.toPodcast.streamingAmount} label='Stream amount per minute in satoshis' onBlur={handleSetPodcastStreamingAmount} ref={toPodcastStreamingAmountRef} type='number' />
-      <h2>To Podcast App</h2>
-      <TextInput defaultValue={settings.payments.toPodcastApp.boostAmount} label='Boost amount in satoshis' onBlur={handleSetPodcastAppBoostAmount} ref={toPodcastAppBoostAmountRef} type='number' />
-      <TextInput defaultValue={settings.payments.toPodcastApp.streamingAmount} label='Stream amount per minute in satoshis' onBlur={handleSetPodcastAppStreamingAmount} ref={toPodcastAppStreamingAmountRef} type='number' />
+      <h2>Boost Amounts (in satoshis)</h2>
+      <TextInput defaultValue={settings.payments.toPodcast.boostAmount} label='Boost to podcast' onBlur={handleSetPodcastBoostAmount} ref={toPodcastBoostAmountRef} type='number' />
+      <TextInput defaultValue={settings.payments.toPodcast.streamingAmount} label='Stream per minute to podcast' onBlur={handleSetPodcastStreamingAmount} ref={toPodcastStreamingAmountRef} type='number' />
+      <TextInput defaultValue={settings.payments.toPodcastApp.boostAmount} label='Boost to podcast app' onBlur={handleSetPodcastAppBoostAmount} ref={toPodcastAppBoostAmountRef} type='number' />
+      <TextInput defaultValue={settings.payments.toPodcastApp.streamingAmount} label='Stream per minute to podcast app' onBlur={handleSetPodcastAppStreamingAmount} ref={toPodcastAppStreamingAmountRef} type='number' />
     </div>
   )
 }
