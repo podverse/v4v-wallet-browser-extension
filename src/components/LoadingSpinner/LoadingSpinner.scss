@@ -5,8 +5,8 @@
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-animation: load8 1.1s infinite linear;
-  animation: load8 1.1s infinite linear;
+  -webkit-animation: load8 1.5s infinite linear;
+  animation: load8 1.5s infinite linear;
 
   @include themeGen() {
     border-color: getThemeVal('loadingSpinnerTransparentColor') !important;
