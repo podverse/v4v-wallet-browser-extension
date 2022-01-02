@@ -41,6 +41,10 @@
       input {
         font-size: 18px;
         height: 42px;
+
+        @include themeGen() {
+          color: getThemeVal('textInputTextColor');
+        }
   
         &::placeholder {
           @include themeGen() {

@@ -3,7 +3,28 @@
   margin-bottom: 16px;
   
   textarea {
+    border-radius: 4px;
     flex: 1;
+    font-size: 16px;
+    outline: none;
     padding: 8px;
+
+    @include themeGen() {
+      background-color: getThemeVal('textInputBackgroundColor') !important;
+      border-color: getThemeVal('textInputBorderColor');
+      color: getThemeVal('textInputTextColor');
+    }
+  
+    &:focus-within {
+      @include themeGen() {
+        border-color: getThemeVal('textInputFocusBorderColor');
+      }
+    }
+
+    &::placeholder {
+      @include themeGen() {
+        color: getThemeVal('textInputPlaceholderColor');
+      }
+    }
   }
 }

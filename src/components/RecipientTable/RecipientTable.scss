@@ -21,6 +21,10 @@
   .recipient {
     font-size: 14px;
     margin-bottom: 8px;
+
+    @include themeGen() {
+      color: getThemeVal('textSecondaryColor');
+    }
     
     .recipient-table-row {
       display: flex;
