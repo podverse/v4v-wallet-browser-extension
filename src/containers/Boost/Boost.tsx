@@ -110,11 +110,10 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
   }
 
   const handleStreamToggle = async () => {
-    if (streamingValueTransactions?.length) {
-      const newIsStreaming = !isStreaming
-      await chrome.storage.local.set({ 'isStreaming': newIsStreaming })
-      OmniAural.isStreamingSet(newIsStreaming)
-    }
+    const newIsStreaming = !isStreaming
+    await chrome.storage.local.set({ 'isStreaming': newIsStreaming })
+    OmniAural.isStreamingSet(newIsStreaming)
+    newIsStreaming ? chrome.action.setBadgeText({ text: 'On' }) : chrome.action.setBadgeText({ text: '' })
   }
 
   const wrapperClassName = `outer-wrapper ${hideContainer ? 'hide' : ''}`
