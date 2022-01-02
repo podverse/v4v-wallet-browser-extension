@@ -80,7 +80,7 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
                 <TextArea defaultValue='' placeholder='send a boostagram' ref={textAreaRef} />
               </div>
               {/* <Button className='stream-button' isSecondary text='Stream' /> */}
-              <RecipientTable valueTag={v4vItem?.valueTags[0]} />
+              <RecipientTable action='Boost' amount={settings.payments.toPodcast.boostAmount} headerText='Boost Recipients' valueTag={v4vItem?.valueTags[0]} v4vItem={v4vItem} />
             </>
           )
         }

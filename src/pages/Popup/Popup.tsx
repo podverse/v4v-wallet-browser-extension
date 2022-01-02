@@ -47,9 +47,7 @@ const Popup = () => {
     ; (async () => {
       const storageData = await chrome.storage.local.get([
         'acceptedTermsOfService',
-        'connectedTabInfo',
         'settings',
-        'v4vHiddenElement',
         'walletInfo'
       ])
       const { acceptedTermsOfService, settings, walletInfo } = storageData
