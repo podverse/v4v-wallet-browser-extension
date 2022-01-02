@@ -1,6 +1,7 @@
 import OmniAural, { useOmniAural } from 'omniaural'
 import React, { useRef } from 'react'
 import { BackButton, TextInput } from '../../components'
+import { storageUpdateToPodcastAppBoostAmount, storageUpdateToPodcastAppStreamingAmount, storageUpdateToPodcastBoostAmount, storageUpdateToPodcastStreamingAmount } from '../../lib/storage'
 import { Constants } from '../../resources'
 
 type Props = {
@@ -22,21 +23,25 @@ export const Settings = ({ hideContainer, setCurrentPage }: Props) => {
   const handleSetPodcastBoostAmount = () => {
     const val = parseInt(toPodcastBoostAmountRef?.current?.value as string, 10)
     OmniAural.settingsPaymentsToPodcastBoostAmountSet(val)
+    storageUpdateToPodcastBoostAmount(val)
   }
 
   const handleSetPodcastStreamingAmount = () => {
     const val = parseInt(toPodcastStreamingAmountRef?.current?.value as string, 10)
     OmniAural.settingsPaymentsToPodcastStreamingAmountSet(val)
+    storageUpdateToPodcastStreamingAmount(val)
   }
 
   const handleSetPodcastAppBoostAmount = () => {
     const val = parseInt(toPodcastAppBoostAmountRef?.current?.value as string, 10)
     OmniAural.settingsPaymentsToPodcastAppBoostAmountSet(val)
+    storageUpdateToPodcastAppBoostAmount(val)
   }
 
   const handleSetPodcastAppStreamingAmount = () => {
     const val = parseInt(toPodcastAppStreamingAmountRef?.current?.value as string, 10)
     OmniAural.settingsPaymentsToPodcastAppStreamingAmountSet(val)
+    storageUpdateToPodcastAppStreamingAmount(val)
   }
 
   const wrapperClassName = `settings container-wrapper ${hideContainer ? 'hide' : ''}`

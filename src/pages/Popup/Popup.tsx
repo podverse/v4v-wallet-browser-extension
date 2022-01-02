@@ -16,11 +16,12 @@ import {
   Withdraw
 } from '../../containers'
 import { LoadingSpinner } from '../../components';
+import { storageInitializeSettings } from '../../lib/storage'
 import { handleV4VHiddenElement } from '../../lib/v4vHiddenElement';
 import { Constants } from '../../resources/Constants'
-
 import '../../state/index.tsx'
 import initialState from '../../state/initialState.json'
+import { syncStorageToGlobalState } from '../../state';
 
 OmniAural.initGlobalState(initialState)
 
@@ -36,23 +37,6 @@ chrome.tabs.query({ active: true }, async function (tabs) {
     )
   }
 });
-
-const initializeSettings = async () => {
-  await chrome.storage.local.set({
-    settings: {
-      payments: {
-        toPodcast: {
-          boostAmount: 190,
-          streamingAmount: 19
-        },
-        toPodcastApp: {
-          boostAmount: 10,
-          streamingAmount: 1
-        }
-      }
-    }
-  })
-}
 
 const Popup = () => {
   const [currentPage, setCurrentPage] = useState(Constants.RouteNames.keys._consent)
@@ -71,7 +55,9 @@ const Popup = () => {
       const { acceptedTermsOfService, settings, walletInfo } = storageData
 
       if (!settings) {
-        await initializeSettings()
+        await storageInitializeSettings()
+      } else {
+        await syncStorageToGlobalState()
       }
 
       if (!acceptedTermsOfService) {
