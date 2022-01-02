@@ -10,9 +10,13 @@ type Props = {
 
 const Component = ({ defaultValue, label, onBlur, placeholder, type }: Props, ref: any) => {
   return (
-    <div className='text-input-wrapper'>
-      <label>{label}</label>
-      <input defaultValue={defaultValue} onBlur={onBlur} placeholder={placeholder} ref={ref} type={type} />
+    <div className='text-input'>
+      <div className='text-input-outer-wrapper'>
+        <div className='text-input-inner-wrapper'>
+          <div className='eyebrow'>{label}</div>
+          <input defaultValue={defaultValue} onBlur={onBlur} placeholder={placeholder} ref={ref} type={type} />
+        </div>
+      </div>
     </div>
   )
 }

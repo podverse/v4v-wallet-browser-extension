@@ -1,5 +1,13 @@
-h1, h2 {
+h1 {
   margin: 0 0 16px 0;
+}
+
+h2 {
+  margin: 0 0 16px 0;
+
+  @include themeGen() {
+    color: getThemeVal('textSecondaryColor');
+  }
 }
 
 p { 
@@ -58,6 +66,10 @@ button {
 
   /* Corrects inability to style clickable `input` types in iOS */
   -webkit-appearance: none;
+}
+
+input {
+  all: unset;
 }
 
 .hide {

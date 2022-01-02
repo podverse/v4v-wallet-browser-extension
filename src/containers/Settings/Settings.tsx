@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import { BackButton, TextInput } from '../../components'
 import { storageUpdateToPodcastAppBoostAmount, storageUpdateToPodcastAppStreamingAmount, storageUpdateToPodcastBoostAmount, storageUpdateToPodcastStreamingAmount } from '../../lib/storage'
 import { Constants } from '../../resources'
+import { syncStorageToGlobalState } from '../../state'
 
 type Props = {
   hideContainer: boolean
@@ -22,26 +23,46 @@ export const Settings = ({ hideContainer, setCurrentPage }: Props) => {
 
   const handleSetPodcastBoostAmount = () => {
     const val = parseInt(toPodcastBoostAmountRef?.current?.value as string, 10)
-    OmniAural.settingsPaymentsToPodcastBoostAmountSet(val)
-    storageUpdateToPodcastBoostAmount(val)
+    if (val >= 0) {
+      OmniAural.settingsPaymentsToPodcastBoostAmountSet(val)
+      storageUpdateToPodcastBoostAmount(val)
+    } else if (toPodcastBoostAmountRef?.current) {
+      toPodcastBoostAmountRef.current.value
+        = OmniAural.state.settings.payments.toPodcast.boostAmount.value()
+    }
   }
 
   const handleSetPodcastStreamingAmount = () => {
     const val = parseInt(toPodcastStreamingAmountRef?.current?.value as string, 10)
-    OmniAural.settingsPaymentsToPodcastStreamingAmountSet(val)
-    storageUpdateToPodcastStreamingAmount(val)
+    if (val >= 0) {
+      OmniAural.settingsPaymentsToPodcastStreamingAmountSet(val)
+      storageUpdateToPodcastStreamingAmount(val)
+    } else if (toPodcastStreamingAmountRef?.current) {
+      toPodcastStreamingAmountRef.current.value
+        = OmniAural.state.settings.payments.toPodcast.streamingAmount.value()
+    }
   }
 
   const handleSetPodcastAppBoostAmount = () => {
     const val = parseInt(toPodcastAppBoostAmountRef?.current?.value as string, 10)
-    OmniAural.settingsPaymentsToPodcastAppBoostAmountSet(val)
-    storageUpdateToPodcastAppBoostAmount(val)
+    if (val >= 0) {
+      OmniAural.settingsPaymentsToPodcastAppBoostAmountSet(val)
+      storageUpdateToPodcastAppBoostAmount(val)
+    } else if (toPodcastAppBoostAmountRef?.current) {
+      toPodcastAppBoostAmountRef.current.value
+        = OmniAural.state.settings.payments.toPodcastApp.boostAmount.value()
+    }
   }
 
   const handleSetPodcastAppStreamingAmount = () => {
     const val = parseInt(toPodcastAppStreamingAmountRef?.current?.value as string, 10)
-    OmniAural.settingsPaymentsToPodcastAppStreamingAmountSet(val)
-    storageUpdateToPodcastAppStreamingAmount(val)
+    if (val >= 0) {
+      OmniAural.settingsPaymentsToPodcastAppStreamingAmountSet(val)
+      storageUpdateToPodcastAppStreamingAmount(val)
+    } else if (toPodcastAppStreamingAmountRef?.current) {
+      toPodcastAppStreamingAmountRef.current.value
+        = OmniAural.state.settings.payments.toPodcastApp.streamingAmount.value()
+    }
   }
 
   const wrapperClassName = `settings container-wrapper ${hideContainer ? 'hide' : ''}`
@@ -53,7 +74,6 @@ export const Settings = ({ hideContainer, setCurrentPage }: Props) => {
       <h2>To Podcast</h2>
       <TextInput defaultValue={settings.payments.toPodcast.boostAmount} label='Boost amount in satoshis' onBlur={handleSetPodcastBoostAmount} ref={toPodcastBoostAmountRef} type='number' />
       <TextInput defaultValue={settings.payments.toPodcast.streamingAmount} label='Stream amount per minute in satoshis' onBlur={handleSetPodcastStreamingAmount} ref={toPodcastStreamingAmountRef} type='number' />
-      <hr />
       <h2>To Podcast App</h2>
       <TextInput defaultValue={settings.payments.toPodcastApp.boostAmount} label='Boost amount in satoshis' onBlur={handleSetPodcastAppBoostAmount} ref={toPodcastAppBoostAmountRef} type='number' />
       <TextInput defaultValue={settings.payments.toPodcastApp.streamingAmount} label='Stream amount per minute in satoshis' onBlur={handleSetPodcastAppStreamingAmount} ref={toPodcastAppStreamingAmountRef} type='number' />

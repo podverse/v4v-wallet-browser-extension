@@ -1,19 +1,57 @@
-.text-input-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
+.text-input {
+  margin: 0 0 16px 0;
+  position: relative;
 
-  label {
-    flex: 1;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
+  .text-input-outer-wrapper {
+    align-items: center;
+    border-color: transparent;
+    border-radius: $item-border-radius !important;
+    border-style: solid;
+    border-width: $border-width-default;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 16px;
 
-  input {
-    flex: 1;
-    font-size: 18px;
-    height: 44px;
-    padding: 8px;
+    @include themeGen() {
+      background-color: getThemeVal('textInputBackgroundColor') !important;
+    }
+  
+    &:focus-within {
+      @include themeGen() {
+        border-color: getThemeVal('textInputFocusBorderColor');
+      }
+    }
+
+    .text-input-inner-wrapper {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      height: 42px;
+  
+      .eyebrow {
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0 0 2px 0;
+  
+        @include themeGen() {
+          color: getThemeVal('textInputEyebrowColor') !important;
+        }
+      }
+  
+      input {
+        font-size: 18px;
+        height: 42px;
+  
+        &::placeholder {
+          @include themeGen() {
+            color: getThemeVal('textInputPlaceholderColor');
+          }
+        }
+      }
+
+      .eyebrow + input {
+        height: 24px;
+      }
+    }
   }
 }
