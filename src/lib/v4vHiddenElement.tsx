@@ -41,9 +41,9 @@ export const handleV4VHiddenElement = () => {
         podcastIndexId,
         uiTheme
       }
-    }
 
-    handleV4VHiddenElementChanges(el)
+      handleV4VHiddenElementChanges(el)
+    }
   } catch (error) {
     console.log('parseV4VHiddenElement error:')
     console.log(error)

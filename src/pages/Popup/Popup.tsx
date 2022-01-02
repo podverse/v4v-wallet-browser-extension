@@ -25,7 +25,7 @@ import { syncStorageToGlobalState } from '../../state';
 
 OmniAural.initGlobalState(initialState)
 
-chrome.tabs.query({ active: true }, async function (tabs) {
+chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT }, async function (tabs) {
   let tab = tabs[0];
 
   if (tab?.id) {

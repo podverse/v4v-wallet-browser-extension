@@ -71,7 +71,7 @@ export const Settings = ({ hideContainer, setCurrentPage }: Props) => {
     <div className={wrapperClassName}>
       <BackButton handleSetCurrentPage={handleBackButton} />
       <h1>Settings</h1>
-      <h2>Boost Amounts (in satoshis)</h2>
+      <h2>Amounts (in satoshis)</h2>
       <TextInput defaultValue={settings.payments.toPodcast.boostAmount} label='Boost to podcast' onBlur={handleSetPodcastBoostAmount} ref={toPodcastBoostAmountRef} type='number' />
       <TextInput defaultValue={settings.payments.toPodcast.streamingAmount} label='Stream per minute to podcast' onBlur={handleSetPodcastStreamingAmount} ref={toPodcastStreamingAmountRef} type='number' />
       <TextInput defaultValue={settings.payments.toPodcastApp.boostAmount} label='Boost to podcast app' onBlur={handleSetPodcastAppBoostAmount} ref={toPodcastAppBoostAmountRef} type='number' />
