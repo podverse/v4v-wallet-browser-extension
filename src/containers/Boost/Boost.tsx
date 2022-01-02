@@ -2,6 +2,7 @@ import { useOmniAural } from 'omniaural'
 import React, { useEffect, useRef, useState } from 'react'
 import { Button, HeaderBar, LoadingSpinner, RecipientTable, TextArea } from '../../components'
 import { getPodcastIndexItemInfo } from '../../lib/podcastIndex'
+import { convertValueTagIntoValueTransactions } from '../../lib/v4vHelpers'
 import type { V4VItem } from '../../types'
 
 type Props = {
@@ -38,14 +39,31 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
   }, [])
 
   const handleBoost = () => {
-    setIsBoosting(true)
+    if (v4vItem?.valueTags[0]) {
+      setIsBoosting(true)
 
-    setTimeout(() => {
-      if (textAreaRef?.current?.value) {
-        textAreaRef.current.value = ''
-      }
-      setIsBoosting(false)
-    }, 1000)
+      const valueTag = v4vItem?.valueTags[0]
+      const action = 'Boost'
+      const amount = settings.payments.toPodcast.boostAmount
+      const roundDownValues = true
+      const valueTransactions = convertValueTagIntoValueTransactions(
+        valueTag,
+        v4vItem,
+        action,
+        amount,
+        roundDownValues
+      )
+
+      console.log('booooost', valueTransactions)
+      // TODO: send valueTransactions to LNPay keysend endpoint
+
+      setTimeout(() => {
+        if (textAreaRef?.current?.value) {
+          textAreaRef.current.value = ''
+        }
+        setIsBoosting(false)
+      }, 1000)
+    }
   }
 
   const wrapperClassName = `outer-wrapper ${hideContainer ? 'hide' : ''}`
