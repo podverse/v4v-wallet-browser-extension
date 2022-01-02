@@ -3,12 +3,13 @@ import React from 'react'
 /* Loading spinner copied from https://loading.io/css/ */
 
 type Props = {
+  className?: string
   fillSpace?: boolean
   size: 'small' | 'large'
 }
 
-export const LoadingSpinner = ({ fillSpace, size = 'large' }: Props) => {
-  const wrapperClass = `${fillSpace ? 'fill-space' : ''}`
+export const LoadingSpinner = ({ className, fillSpace, size = 'large' }: Props) => {
+  const wrapperClass = `loading-spinner ${className ? className : ''} ${fillSpace ? 'fill-space' : ''}`
   const loaderClass = `loader ${size}`
 
   return (

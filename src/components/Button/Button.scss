@@ -76,19 +76,30 @@
     }
   }
 
-  .text-wrapper {
+  .inner-button-wrapper {
+    align-items: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 
-    .top-text {
-      font-size: 16px;
-      font-weight: 700;
+    .text-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  
+      .top-text {
+        font-size: 16px;
+        font-weight: 700;
+      }
+      
+      .bottom-text {
+        font-size: 13px;
+        margin-top: 2px;
+      }
     }
-    
-    .bottom-text {
-      font-size: 13px;
-      margin-top: 2px;
+
+    .is-streaming {
+      margin: 0 -32px 0 8px;
     }
   }
 }

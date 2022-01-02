@@ -8,13 +8,14 @@ type Props = {
   isLoading?: boolean
   isPrimary?: boolean
   isSecondary?: boolean
+  isStreaming?: boolean
   isDanger?: boolean
   onClick?: any
   text?: string
   textBottom?: string
 }
 
-export const Button = ({ className, disabled, isDanger, isLink, isLoading = false, isPrimary, isSecondary, onClick, text, textBottom }: Props) => {
+export const Button = ({ className, disabled, isDanger, isLink, isLoading = false, isPrimary, isSecondary, isStreaming, onClick, text, textBottom }: Props) => {
   const finalClassName = `
     button
     ${className ? className : ''}
@@ -33,15 +34,22 @@ export const Button = ({ className, disabled, isDanger, isLink, isLoading = fals
       }
       {
         !isLoading && (
-          <div className='text-wrapper'>
-            <div className='top-text'>
-              {text}
+          <div className='inner-button-wrapper'>
+            <div className='text-wrapper'>
+              <div className='top-text'>
+                {text}
+              </div>
+              {
+                textBottom && (
+                  <div className='bottom-text'>
+                    {textBottom}
+                  </div>
+                )
+              }
             </div>
             {
-              textBottom && (
-                <div className='bottom-text'>
-                  {textBottom}
-                </div>
+              isStreaming && (
+                <LoadingSpinner className='is-streaming' size='small' />
               )
             }
           </div>

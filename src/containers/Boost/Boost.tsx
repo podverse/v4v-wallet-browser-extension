@@ -1,4 +1,4 @@
-import { useOmniAural } from 'omniaural'
+import OmniAural, { useOmniAural } from 'omniaural'
 import React, { useEffect, useRef, useState } from 'react'
 import { Button, HeaderBar, LoadingSpinner, RecipientTable, TextArea } from '../../components'
 import { getPodcastAppInfo, getPodcastIndexItemInfo } from '../../lib/podcastIndex'
@@ -16,6 +16,7 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
   const [v4vItem, setV4VItem] = useState<V4VItem | null>(null)
   const [v4vPodcastAppInfo, setV4VPodcastAppInfo] = useState<V4VPodcastAppInfo | null>(null)
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
+  const [isStreaming] = useOmniAural('isStreaming')
   const [settings] = useOmniAural('settings')
 
   useEffect(() => {
@@ -108,9 +109,20 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
     }
   }
 
+  const handleStreamToggle = async () => {
+    if (streamingValueTransactions?.length) {
+      const newIsStreaming = !isStreaming
+      await chrome.storage.local.set({ 'isStreaming': newIsStreaming })
+      OmniAural.isStreamingSet(newIsStreaming)
+    }
+  }
+
   const wrapperClassName = `outer-wrapper ${hideContainer ? 'hide' : ''}`
   const totalBoostButtonAmount = settings.payments.toPodcast.boostAmount + settings.payments.toPodcastApp.boostAmount
   const boostButtonAmountText = `${totalBoostButtonAmount} sats`
+  const totalStreamButtonAmount = settings.payments.toPodcast.streamingAmount + settings.payments.toPodcastApp.streamingAmount
+  const streamButtonAmountText = `${totalStreamButtonAmount} sats/min`
+  const streamButtonText = isStreaming ? 'Stream on' : 'Stream off'
 
   return (
     <div className={wrapperClassName}>
@@ -135,18 +147,20 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
                 <div className='podcast-title'>{v4vItem?.podcastTitle}</div>
                 <div className='episode-title'>{v4vItem?.episodeTitle}</div>
               </div>
+              <div className='stream-wrapper'>
+                <Button className='stream-button' isSecondary text={streamButtonText} isStreaming={isStreaming} onClick={handleStreamToggle} textBottom={streamButtonAmountText} />
+              </div>
               <div className='boost-wrapper'>
                 <Button className='boost-button' isLoading={isBoosting} isSecondary text='Boost' onClick={handleBoost} textBottom={boostButtonAmountText} />
                 <TextArea defaultValue='' placeholder='send a boostagram' ref={textAreaRef} />
               </div>
-              {/* <Button className='stream-button' isSecondary text='Stream' /> */}
               <hr />
               <RecipientTable
                 headerText='Boost Recipients'
                 valueTransactions={boostValueTransactions} />
               <hr />
               <RecipientTable
-                headerText='Streaming Recipients'
+                headerText='Stream Recipients'
                 valueTransactions={streamingValueTransactions} />
             </>
           )

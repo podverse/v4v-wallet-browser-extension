@@ -1,9 +1,9 @@
 .boost {
   .podcast-info {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     
     .podcast-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
       margin-bottom: 4px;
     }
@@ -13,10 +13,18 @@
     }
   }
 
-  .boost-wrapper {
+  .stream-wrapper {
+    .stream-button {
+      margin: 0 0 24px 0;
+    }
+  }
 
+  .boost-wrapper {
     .boost-button {
       margin-bottom: 24px;
+    }
+    .text-area-wrapper {
+      margin-bottom: 12px;
     }
   }
 

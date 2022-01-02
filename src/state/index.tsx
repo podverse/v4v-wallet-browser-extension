@@ -1,13 +1,7 @@
 import OmniAural from 'omniaural'
 
-export const syncStorageToGlobalState = async () => {
-  const storageData = await chrome.storage.local.get(['settings'])
-  const { settings } = storageData
-  OmniAural.settingsUpdateAll(settings)
-}
-
-const settingsUpdateAll = (settings: any) => {
-  OmniAural.state.settings.set(settings)
+const isStreamingSet = (val: boolean) => {
+  OmniAural.state.isStreaming.set(val)
 }
 
 const settingsPaymentsToPodcastBoostAmountSet = (val: number) => {
@@ -26,7 +20,19 @@ const settingsPaymentsToPodcastAppStreamingAmountSet = (val: number) => {
   OmniAural.state.settings.payments.toPodcastApp.streamingAmount.set(val)
 }
 
+const settingsUpdateAll = (settings: any) => {
+  OmniAural.state.settings.set(settings)
+}
+
+export const syncStorageToGlobalState = async () => {
+  const storageData = await chrome.storage.local.get(['isStreaming', 'settings'])
+  const { isStreaming, settings } = storageData
+  OmniAural.isStreamingSet(isStreaming)
+  OmniAural.settingsUpdateAll(settings)
+}
+
 OmniAural.addActions({
+  isStreamingSet,
   settingsUpdateAll,
   settingsPaymentsToPodcastBoostAmountSet,
   settingsPaymentsToPodcastStreamingAmountSet,

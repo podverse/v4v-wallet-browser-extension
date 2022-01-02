@@ -1,4 +1,5 @@
 {
+  "isStreaming": false,
   "settings": {
     "payments": {
       "toPodcast": {
