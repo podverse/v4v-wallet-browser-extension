@@ -157,7 +157,7 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
               <RecipientTable
                 headerText='Boost Recipients'
                 valueTransactions={boostValueTransactions} />
-              <hr />
+              {/* <hr /> */}
               {/* <RecipientTable
                 headerText='Stream Recipients'
                 valueTransactions={streamingValueTransactions} /> */}
