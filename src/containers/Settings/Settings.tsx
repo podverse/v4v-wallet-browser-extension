@@ -3,7 +3,6 @@ import React, { useRef } from 'react'
 import { BackButton, TextInput } from '../../components'
 import { storageUpdateToPodcastAppBoostAmount, storageUpdateToPodcastAppStreamingAmount, storageUpdateToPodcastBoostAmount, storageUpdateToPodcastStreamingAmount } from '../../lib/storage'
 import { Constants } from '../../resources'
-import { syncStorageToGlobalState } from '../../state'
 
 type Props = {
   hideContainer: boolean
@@ -73,9 +72,9 @@ export const Settings = ({ hideContainer, setCurrentPage }: Props) => {
       <h1>Settings</h1>
       <h2>Amounts (in satoshis)</h2>
       <TextInput defaultValue={settings.payments.toPodcast.boostAmount} label='Boost to podcast' onBlur={handleSetPodcastBoostAmount} ref={toPodcastBoostAmountRef} type='number' />
-      <TextInput defaultValue={settings.payments.toPodcast.streamingAmount} label='Stream per minute to podcast' onBlur={handleSetPodcastStreamingAmount} ref={toPodcastStreamingAmountRef} type='number' />
+      {/* <TextInput defaultValue={settings.payments.toPodcast.streamingAmount} label='Stream per minute to podcast' onBlur={handleSetPodcastStreamingAmount} ref={toPodcastStreamingAmountRef} type='number' /> */}
       <TextInput defaultValue={settings.payments.toPodcastApp.boostAmount} label='Boost to podcast app' onBlur={handleSetPodcastAppBoostAmount} ref={toPodcastAppBoostAmountRef} type='number' />
-      <TextInput defaultValue={settings.payments.toPodcastApp.streamingAmount} label='Stream per minute to podcast app' onBlur={handleSetPodcastAppStreamingAmount} ref={toPodcastAppStreamingAmountRef} type='number' />
+      {/* <TextInput defaultValue={settings.payments.toPodcastApp.streamingAmount} label='Stream per minute to podcast app' onBlur={handleSetPodcastAppStreamingAmount} ref={toPodcastAppStreamingAmountRef} type='number' /> */}
     </div>
   )
 }
