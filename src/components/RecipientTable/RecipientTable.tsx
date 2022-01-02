@@ -1,35 +1,18 @@
 import React, { useState } from 'react'
-import { convertValueTagIntoValueTransactions } from '../../lib/v4vHelpers'
-import { V4VItem, ValueRecipient, ValueTag, ValueTransaction } from '../../types'
+import { ValueTransaction } from '../../types'
 
 type Props = {
-  action: 'Boost' | 'Streaming'
-  amount: number
   headerText: string
-  valueTag: ValueTag
-  v4vItem: V4VItem
+  valueTransactions: ValueTransaction[]
 }
 
-export const RecipientTable = ({ action, amount, headerText, valueTag, v4vItem }: Props) => {
+export const RecipientTable = ({ headerText, valueTransactions }: Props) => {
   const [showMoreInfo, setShowMoreInfo] = useState<boolean>(false)
   const showMoreInfoText = showMoreInfo ? 'Hide more info' : 'Show more info'
 
   const toggleShowMoreInfo = () => {
     setShowMoreInfo(!showMoreInfo)
   }
-
-  const generateValueTransactions = () => {
-    const roundDownValues = true
-    return convertValueTagIntoValueTransactions(
-      valueTag,
-      v4vItem,
-      action,
-      amount,
-      roundDownValues
-    )
-  }
-
-  const valueTransactions = generateValueTransactions()
 
   const generateTableRows = () => {
     return valueTransactions.map((valueTransaction: ValueTransaction, index: number) => {

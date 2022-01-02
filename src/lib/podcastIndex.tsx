@@ -29,6 +29,11 @@ export const getPodcastIndexItemInfo = async (feedId: string, enclosureUrl: stri
   return sampleV4VItem
 }
 
+export const getPodcastAppInfo = async () => {
+  // Return sampleV4VPodcastAppItem for development purposes only
+  return sampleV4VPodcastAppItem
+}
+
 const getPodcastIndexPodcastInfo = async (feedId: string) => {
   const options = {
     headers: generateAuthorizationHeaders(),
@@ -161,6 +166,25 @@ const sampleV4VItem = {
         }
       ],
       "suggested": 0.00000005000,
+      "type": "lightning"
+    }
+  ]
+}
+
+const sampleV4VPodcastAppItem = {
+  "appName": "Podverse",
+  "podcastIndexAppId": 12345,
+  "valueTags": [
+    {
+      "method": "keysend",
+      "recipients": [
+        {
+          "address": "02b92193a4c9d035c81f8076ae4a4aba04b7ea8e04058eb3296f894e6ccd5f2e6e",
+          "name": "Podverse",
+          "split": 100,
+          "type": "node"
+        },
+      ],
       "type": "lightning"
     }
   ]

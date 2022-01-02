@@ -1,9 +1,9 @@
 import { useOmniAural } from 'omniaural'
 import React, { useEffect, useRef, useState } from 'react'
 import { Button, HeaderBar, LoadingSpinner, RecipientTable, TextArea } from '../../components'
-import { getPodcastIndexItemInfo } from '../../lib/podcastIndex'
-import { convertValueTagIntoValueTransactions } from '../../lib/v4vHelpers'
-import type { V4VItem } from '../../types'
+import { getPodcastAppInfo, getPodcastIndexItemInfo } from '../../lib/podcastIndex'
+import { convertPodcastAppInfoToV4VItem, convertValueTagIntoValueTransactions } from '../../lib/v4vHelpers'
+import type { V4VItem, V4VPodcastAppInfo, ValueTransaction } from '../../types'
 
 type Props = {
   hideContainer: boolean
@@ -14,6 +14,7 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
   const [isBoosting, setIsBoosting] = useState<boolean>(false)
   const [isQuerying, setIsQuerying] = useState<boolean>(true)
   const [v4vItem, setV4VItem] = useState<V4VItem | null>(null)
+  const [v4vPodcastAppInfo, setV4VPodcastAppInfo] = useState<V4VPodcastAppInfo | null>(null)
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [settings] = useOmniAural('settings')
 
@@ -25,36 +26,77 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
       const { v4vHiddenElement } = storageData
 
       let v4vItemInfo: any = null
+      let v4vPodcastAppInfo: any = null
       if (v4vHiddenElement?.podcastIndexId) {
         v4vItemInfo = await getPodcastIndexItemInfo(
           v4vHiddenElement.podcastIndexId, v4vHiddenElement.enclosureUrl)
+        v4vPodcastAppInfo = await getPodcastAppInfo()
       }
 
       // TEMP: setTimeout for dev purposes
       setTimeout(() => {
         setV4VItem(v4vItemInfo)
+        setV4VPodcastAppInfo(v4vPodcastAppInfo)
         setIsQuerying(false)
       }, 1000)
     })()
   }, [])
 
-  const handleBoost = () => {
-    if (v4vItem?.valueTags[0]) {
-      setIsBoosting(true)
+  const generateValueTransactions = (action: 'Boost' | 'Streaming', toPodcastAmount: number, toPodcastAppAmount: number) => {
+    let transactions = [] as ValueTransaction[]
+    const podcastValueTag = v4vItem?.valueTags[0]
+    const v4vItemPodcastApp = convertPodcastAppInfoToV4VItem(v4vPodcastAppInfo)
+    const podcastAppValueTag = v4vItemPodcastApp?.valueTags[0]
+    const roundDownValues = true
 
-      const valueTag = v4vItem?.valueTags[0]
-      const action = 'Boost'
-      const amount = settings.payments.toPodcast.boostAmount
-      const roundDownValues = true
-      const valueTransactions = convertValueTagIntoValueTransactions(
-        valueTag,
+    if (podcastValueTag) {
+      const podcastTransactions = convertValueTagIntoValueTransactions(
+        podcastValueTag,
         v4vItem,
         action,
-        amount,
+        toPodcastAmount,
         roundDownValues
       )
 
-      console.log('booooost', valueTransactions)
+      if (podcastTransactions.length > 0) {
+        transactions = transactions.concat(podcastTransactions)
+      }
+    }
+
+    if (podcastAppValueTag) {
+      const podcastAppTransactions = convertValueTagIntoValueTransactions(
+        podcastAppValueTag,
+        v4vItemPodcastApp,
+        action,
+        toPodcastAppAmount,
+        roundDownValues
+      )
+
+      if (podcastAppTransactions.length > 0) {
+        transactions = transactions.concat(podcastAppTransactions)
+      }
+    }
+
+    return transactions
+  }
+
+  const boostValueTransactions = generateValueTransactions(
+    'Boost',
+    settings.payments.toPodcast.boostAmount,
+    settings.payments.toPodcastApp.boostAmount
+  )
+
+  const streamingValueTransactions = generateValueTransactions(
+    'Streaming',
+    settings.payments.toPodcast.streamingAmount,
+    settings.payments.toPodcastApp.streamingAmount
+  )
+
+  const handleBoost = () => {
+    if (boostValueTransactions?.length) {
+      setIsBoosting(true)
+
+      console.log('booooost', boostValueTransactions)
       // TODO: send valueTransactions to LNPay keysend endpoint
 
       setTimeout(() => {
@@ -98,7 +140,14 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
                 <TextArea defaultValue='' placeholder='send a boostagram' ref={textAreaRef} />
               </div>
               {/* <Button className='stream-button' isSecondary text='Stream' /> */}
-              <RecipientTable action='Boost' amount={settings.payments.toPodcast.boostAmount} headerText='Boost Recipients' valueTag={v4vItem?.valueTags[0]} v4vItem={v4vItem} />
+              <hr />
+              <RecipientTable
+                headerText='Boost Recipients'
+                valueTransactions={boostValueTransactions} />
+              <hr />
+              <RecipientTable
+                headerText='Streaming Recipients'
+                valueTransactions={streamingValueTransactions} />
             </>
           )
         }

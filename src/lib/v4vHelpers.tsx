@@ -1,4 +1,4 @@
-import type { SatoshiStreamStats, V4VItem, ValueRecipient, ValueRecipientNormalized, ValueTag, ValueTransaction } from "../types"
+import type { SatoshiStreamStats, V4VItem, V4VPodcastAppInfo, ValueRecipient, ValueRecipientNormalized, ValueTag, ValueTransaction } from "../types"
 import { v4 as uuidv4 } from 'uuid'
 
 export const normalizeValueRecipients = (recipients: ValueRecipient[], total: number, roundDownValues: boolean) => {
@@ -80,9 +80,7 @@ export const convertValueTagIntoValueTransactions = (
 
   const valueTransactions: ValueTransaction[] = []
   const recipients = valueTag.recipients
-
   const normalizedValueRecipients = normalizeValueRecipients(recipients, amount, roundDownValues)
-
   for (const normalizedValueRecipient of normalizedValueRecipients) {
     const valueTransaction = convertValueTagIntoValueTransaction(
       normalizedValueRecipient,
@@ -142,8 +140,8 @@ export const createSatoshiStreamStats = (
   customKey: string,
   customValue: string
 ) => {
-  const podcast = v4vItem?.podcastTitle || 'Unknown podcast title'
-  const episode = v4vItem?.episodeTitle || 'Unknown episode title'
+  const podcast = v4vItem?.podcastTitle
+  const episode = v4vItem?.episodeTitle
   const podcastIndexId = v4vItem?.podcastIndexFeedId || null
   const ts = parseInt(currentPlaybackPosition, 10)
   const amountNum = parseInt(amount, 10) * 1000 // in millisats
@@ -165,4 +163,15 @@ export const createSatoshiStreamStats = (
     7629175: podcastIndexId,
     ...(customKey ? { [customKey]: customValue } : {})
   } as SatoshiStreamStats
+}
+
+export const convertPodcastAppInfoToV4VItem = (v4vPodcastAppInfo: V4VPodcastAppInfo | null) => {
+  return v4vPodcastAppInfo ? {
+    enclosureUrl: null,
+    episodeTitle: null,
+    podcastIndexEpisodeId: null,
+    podcastIndexFeedId: v4vPodcastAppInfo.podcastIndexAppId,
+    podcastTitle: v4vPodcastAppInfo.appName,
+    valueTags: v4vPodcastAppInfo.valueTags
+  } as V4VItem : null
 }

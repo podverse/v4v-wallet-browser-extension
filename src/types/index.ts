@@ -6,11 +6,18 @@ export type V4VHiddenElement = {
 }
 
 export type V4VItem = {
-  enclosureUrl: string
-  episodeTitle: string
+  enclosureUrl: string | null
+  episodeTitle: string | null
   podcastIndexEpisodeId: number | null
   podcastIndexFeedId: number | null
-  podcastTitle: string
+  podcastTitle: string | null
+  valueTags: ValueTag[]
+}
+
+export type V4VPodcastAppInfo = {
+  appName: string | null
+  podcastIndexAppId: number
+  type: 'lightning'
   valueTags: ValueTag[]
 }
 
