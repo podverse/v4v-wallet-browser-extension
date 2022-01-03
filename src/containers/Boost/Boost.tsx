@@ -135,7 +135,7 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
         {
           !v4vItem && !isQuerying && (
             <div className='fill-space'>
-              <h1>This site is not V4V enabled.</h1>
+              <h2>This page is not V4V enabled.</h2>
             </div>
           )
         }
