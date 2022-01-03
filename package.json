@@ -1,11 +1,11 @@
 {
-  "name": "v4v-wallet-chrome-extension",
+  "name": "v4v-wallet-browser-extension",
   "version": "0.0.0",
   "description": "Connect to any V4V enabled website and begin sending Bitcoin to podcasters",
   "license": "AGPLv3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/podverse/v4v-wallet-chrome-extension.git"
+    "url": "https://github.com/podverse/v4v-wallet-browser-extension.git"
   },
   "scripts": {
     "build": "node utils/build.js",
