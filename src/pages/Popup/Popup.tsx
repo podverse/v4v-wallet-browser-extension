@@ -22,6 +22,7 @@ import { Constants } from '../../resources/Constants'
 import '../../state/index.tsx'
 import initialState from '../../state/initialState.json'
 import { syncStorageToGlobalState } from '../../state';
+import { getHostname, getUITheme } from '../../lib/utility';
 
 OmniAural.initGlobalState(initialState)
 
@@ -41,7 +42,7 @@ chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT }, 
 const Popup = () => {
   const [currentPage, setCurrentPage] = useState(Constants.RouteNames.keys._consent)
   const [hasInitialized, setHasInitialized] = useState(false)
-  const [selectedTheme, setSelectedTheme] = useState<string>('podverse-dark')
+  const [selectedTheme, setSelectedTheme] = useState<string>('initial-load')
 
   useEffect(() => {
     ; (async () => {
@@ -66,7 +67,19 @@ const Popup = () => {
         setCurrentPage(Constants.RouteNames.keys._boost)
       }
 
-      setHasInitialized(true)
+
+      chrome.tabs.query({ active: true, windowId: chrome.windows.WINDOW_ID_CURRENT }, async function (tabs) {
+        let tab = tabs[0];
+
+        if (tab?.id) {
+          const hostname = getHostname(tab.url || '')
+          const uiTheme = 'dark'
+          const selectedTheme = getUITheme(hostname, uiTheme)
+          setSelectedTheme(selectedTheme)
+          document.querySelector('body')?.classList.add('show')
+        }
+        setHasInitialized(true)
+      });
     })()
   }, [])
 

@@ -1,4 +1,61 @@
 $themes: (
+  'podnews-dark': (
+    'buttonDisabledBackgroundColor': #808080,
+    'buttonDisabledBorderColor': #808080,
+    'buttonDisabledTextColor': #AAAAAA,
+
+    'buttonPrimaryBackgroundColor': #F13232,
+    'buttonPrimaryBorderColor': #F13232,
+    'buttonPrimaryTextColor': #E2DED6,
+    'buttonPrimaryHoverBackgroundColor': #F13232,
+    'buttonPrimaryHoverBorderColor': #F13232,
+    'buttonPrimaryHoverTextColor': #E2DED6,
+
+    'buttonSecondaryBackgroundColor': #F13232,
+    'buttonSecondaryBorderColor': #F13232,
+    'buttonSecondaryTextColor': #E2DED6,
+    'buttonSecondaryHoverBackgroundColor': #F13232,
+    'buttonSecondaryHoverBorderColor': #F13232,
+    'buttonSecondaryHoverTextColor': #E2DED6,
+
+    'buttonDangerBackgroundColor': #BD2130,
+    'buttonDangerBorderColor': #BD2130,
+    'buttonDangerTextColor': #E2DED6,
+    'buttonDangerHoverBackgroundColor': #C43745,
+    'buttonDangerHoverBorderColor': #C43745,
+    'buttonDangerHoverTextColor': #E2DED6,
+
+    'divider': #333333,
+
+    'headerBarBorderColor': #333333,
+    'headerBarMoreButtonColor': #E2DED6,
+    'headerBarMoreButtonHoverColor': #AAAAAA,
+
+    'linkTextColor': #74A8DC,
+    'linkTextColorHover': #49A4FF,
+
+    'loadingSpinnerIndicatorColor': #E2DED6,
+    'loadingSpinnerTransparentColor': rgba(255, 255, 255, 0.2),
+
+    'menuItemTextColor': #E2DED6,
+    'menuItemHoverTextColor': #AAAAAA,
+
+    'popupBackgroundColor': #121212,
+    'popupBorderColor': #333333,
+
+    'textColor': #E2DED6,
+    'textSecondaryColor': #AAAAAA,
+
+    'textInputBackgroundColor': #0F1235,
+    'textInputBorderColor': #252a6499,
+    'textInputEyebrowColor': #74A8DC,
+    'textInputFocusBorderColor': #007fff,
+    'textInputPlaceholderColor': #AAAAAA,
+    'textInputTextColor': #E2DED6
+  ),
+  'podnews-light': (
+
+  ),
   'podverse-dark': (
     'buttonDisabledBackgroundColor': #808080,
     'buttonDisabledBorderColor': #808080,
@@ -53,7 +110,9 @@ $themes: (
     'textInputPlaceholderColor': #CCCCCC,
     'textInputTextColor': #FFFFFF
   ),
-  'podverse-light': ()
+  'podverse-light': (
+
+  )
 );
 
 /**
