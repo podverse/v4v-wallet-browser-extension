@@ -54,7 +54,58 @@ $themes: (
     'textInputTextColor': #E2DED6
   ),
   'podnews-light': (
+    'buttonDisabledBackgroundColor': #EEEEEE,
+    'buttonDisabledBorderColor': #EEEEEE,
+    'buttonDisabledTextColor': #757575,
 
+    'buttonPrimaryBackgroundColor': #B01212,
+    'buttonPrimaryBorderColor': #B01212,
+    'buttonPrimaryTextColor': #FFFFFF,
+    'buttonPrimaryHoverBackgroundColor': #B01212,
+    'buttonPrimaryHoverBorderColor': #B01212,
+    'buttonPrimaryHoverTextColor': #FFFFFF,
+
+    'buttonSecondaryBackgroundColor': #B01212,
+    'buttonSecondaryBorderColor': #B01212,
+    'buttonSecondaryTextColor': #FFFFFF,
+    'buttonSecondaryHoverBackgroundColor': #B01212,
+    'buttonSecondaryHoverBorderColor': #B01212,
+    'buttonSecondaryHoverTextColor': #FFFFFF,
+
+    'buttonDangerBackgroundColor': #BD2130,
+    'buttonDangerBorderColor': #BD2130,
+    'buttonDangerTextColor': #FFFFFF,
+    'buttonDangerHoverBackgroundColor': #BD2130,
+    'buttonDangerHoverBorderColor': #BD2130,
+    'buttonDangerHoverTextColor': #FFFFFF,
+
+    'divider': #EEEEEE,
+
+    'headerBarBorderColor': #757575,
+    'headerBarMoreButtonColor': #1D2129,
+    'headerBarMoreButtonHoverColor': #757575,
+
+    'linkTextColor': #BD2130,
+    'linkTextColorHover': #BD2130,
+
+    'loadingSpinnerIndicatorColor': #1D2129,
+    'loadingSpinnerTransparentColor': rgba(255, 255, 255, 0.2),
+
+    'menuItemTextColor': #1D2129,
+    'menuItemHoverTextColor': #757575,
+
+    'popupBackgroundColor': #FFFFFF,
+    'popupBorderColor': #333333,
+
+    'textColor': #1D2129,
+    'textSecondaryColor': #757575,
+
+    'textInputBackgroundColor': #FFFFFF,
+    'textInputBorderColor': #333333,
+    'textInputEyebrowColor': #B01212,
+    'textInputFocusBorderColor': #B01212,
+    'textInputPlaceholderColor': #757575,
+    'textInputTextColor': #1D2129
   ),
   'podverse-dark': (
     'buttonDisabledBackgroundColor': #808080,
@@ -111,7 +162,58 @@ $themes: (
     'textInputTextColor': #FFFFFF
   ),
   'podverse-light': (
+    'buttonDisabledBackgroundColor': #808080,
+    'buttonDisabledBorderColor': #808080,
+    'buttonDisabledTextColor': #CCCCCC,
 
+    'buttonPrimaryBackgroundColor': #3D9DFE,
+    'buttonPrimaryBorderColor': #3D9DFE,
+    'buttonPrimaryTextColor': #000000,
+    'buttonPrimaryHoverBackgroundColor': #49A4FF,
+    'buttonPrimaryHoverBorderColor': #49A4FF,
+    'buttonPrimaryHoverTextColor': #000000,
+
+    'buttonSecondaryBackgroundColor': #252a6499,
+    'buttonSecondaryBorderColor': #252a6499,
+    'buttonSecondaryTextColor': #FFFFFF,
+    'buttonSecondaryHoverBackgroundColor': #34397b,
+    'buttonSecondaryHoverBorderColor': #34397b,
+    'buttonSecondaryHoverTextColor': #FFFFFF,
+
+    'buttonDangerBackgroundColor': #BD2130,
+    'buttonDangerBorderColor': #BD2130,
+    'buttonDangerTextColor': #FFFFFF,
+    'buttonDangerHoverBackgroundColor': #C43745,
+    'buttonDangerHoverBorderColor': #C43745,
+    'buttonDangerHoverTextColor': #FFFFFF,
+
+    'divider': #777777,
+
+    'headerBarBorderColor': #777777,
+    'headerBarMoreButtonColor': #FFFFFF,
+    'headerBarMoreButtonHoverColor': #CCCCCC,
+
+    'linkTextColor': #74A8DC,
+    'linkTextColorHover': #49A4FF,
+
+    'loadingSpinnerIndicatorColor': #FFFFFF,
+    'loadingSpinnerTransparentColor': rgba(255, 255, 255, 0.2),
+
+    'menuItemTextColor': #FFFFFF,
+    'menuItemHoverTextColor': #CCCCCC,
+
+    'popupBackgroundColor': #030626,
+    'popupBorderColor': #333333,
+
+    'textColor': #FFFFFF,
+    'textSecondaryColor': #CCCCCC,
+
+    'textInputBackgroundColor': #0F1235,
+    'textInputBorderColor': #252a6499,
+    'textInputEyebrowColor': #74A8DC,
+    'textInputFocusBorderColor': #007fff,
+    'textInputPlaceholderColor': #CCCCCC,
+    'textInputTextColor': #FFFFFF
   )
 );
 

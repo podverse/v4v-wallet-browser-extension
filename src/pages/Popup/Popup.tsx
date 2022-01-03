@@ -73,7 +73,12 @@ const Popup = () => {
 
         if (tab?.id) {
           const hostname = getHostname(tab.url || '')
-          const uiTheme = 'dark'
+          let uiTheme = 'dark'
+
+          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            uiTheme = 'light'
+          }
+
           const selectedTheme = getUITheme(hostname, uiTheme)
           setSelectedTheme(selectedTheme)
           document.querySelector('body')?.classList.add('show')
