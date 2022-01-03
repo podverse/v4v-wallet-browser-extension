@@ -11,6 +11,7 @@ type Props = {
 }
 
 export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
+  const [boostFinished, setBoostFinished] = useState<boolean>(false)
   const [isBoosting, setIsBoosting] = useState<boolean>(false)
   const [isQuerying, setIsQuerying] = useState<boolean>(true)
   const [v4vItem, setV4VItem] = useState<V4VItem | null>(null)
@@ -105,6 +106,11 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
           textAreaRef.current.value = ''
         }
         setIsBoosting(false)
+        setBoostFinished(true)
+
+        setTimeout(() => {
+          setBoostFinished(false)
+        }, 1000)
       }, 1000)
     }
   }
@@ -117,8 +123,9 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
   // }
 
   const wrapperClassName = `outer-wrapper ${hideContainer ? 'hide' : ''}`
+  const boostButtonText = boostFinished ? 'Sent!' : 'Boost'
   const totalBoostButtonAmount = settings.payments.toPodcast.boostAmount + settings.payments.toPodcastApp.boostAmount
-  const boostButtonAmountText = `${totalBoostButtonAmount} sats`
+  const boostButtonAmountText = boostFinished ? '' : `${totalBoostButtonAmount} sats`
   const totalStreamButtonAmount = settings.payments.toPodcast.streamingAmount + settings.payments.toPodcastApp.streamingAmount
   // const streamButtonAmountText = `${totalStreamButtonAmount} sats/min`
   // const streamButtonText = isStreaming ? 'Stream on' : 'Stream off'
@@ -150,7 +157,7 @@ export const Boost = ({ hideContainer, setCurrentPage }: Props) => {
                 <Button className='stream-button' isSecondary text={streamButtonText} isStreaming={isStreaming} onClick={handleStreamToggle} textBottom={streamButtonAmountText} />
               </div> */}
               <div className='boost-wrapper'>
-                <Button className='boost-button' isLoading={isBoosting} isSecondary text='Boost' onClick={handleBoost} textBottom={boostButtonAmountText} />
+                <Button className='boost-button' isLoading={isBoosting} isSecondary text={boostButtonText} onClick={handleBoost} textBottom={boostButtonAmountText} />
                 <TextArea defaultValue='' placeholder='send a boostagram' ref={textAreaRef} />
               </div>
               <hr />
