@@ -6,20 +6,20 @@ export const handleV4VHiddenElement = () => {
   const v4vIsPlayingAttr = 'data-v4v-is-playing'
   const v4vUIThemeAttr = 'data-v4v-ui-theme'
 
-  const handleV4VHiddenElementChanges = (el: any) => {
-    var observer = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        if (mutation.type === "attributes") {
-          if (mutation.attributeName === v4vIsPlayingAttr)
-            console.log("attributes changed", v4vIsPlayingAttr, mutation)
-        }
-      });
-    });
+  // const handleV4VHiddenElementChanges = (el: any) => {
+  //   var observer = new MutationObserver(function (mutations) {
+  //     mutations.forEach(function (mutation) {
+  //       if (mutation.type === "attributes") {
+  //         if (mutation.attributeName === v4vIsPlayingAttr)
+  //           console.log("attributes changed", v4vIsPlayingAttr, mutation)
+  //       }
+  //     });
+  //   });
 
-    observer.observe(el, {
-      attributes: true
-    });
-  }
+  //   observer.observe(el, {
+  //     attributes: true
+  //   });
+  // }
 
   let parsedItem = null
 
@@ -42,7 +42,7 @@ export const handleV4VHiddenElement = () => {
         uiTheme
       }
 
-      handleV4VHiddenElementChanges(el)
+      // handleV4VHiddenElementChanges(el)
     }
   } catch (error) {
     console.log('parseV4VHiddenElement error:')
